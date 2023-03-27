@@ -5,15 +5,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RegisterActivity"
-    android:layout_margin="30dp">
+    tools:context=".RegisterActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/registerFormMargin">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register"
         android:textSize="@dimen/registerTextSize"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
 
     <EditText
         android:id="@+id/imeEditText"
@@ -21,6 +26,7 @@
         android:layout_height="wrap_content"
         android:hint="@string/ime"
         android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
     <EditText
         android:id="@+id/prezimeEditText"
         android:layout_width="match_parent"
@@ -41,6 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/telefon"
+        android:inputType="phone"
         android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
 
     <EditText
@@ -62,11 +69,13 @@
         android:id="@+id/ponovnoLozinkaEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textPassword"
         android:hint="@string/ponovite_lozinku"
         android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
 
     <Button
         android:id="@+id/registerButton"
+        android:backgroundTint="@color/lightRed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/buttonRegisterText" />
@@ -76,5 +85,5 @@
         android:layout_height="wrap_content"
         android:text="@string/if_you_have_an_account_you_can_login_here"
         android:layout_gravity="center"/>
-
+    </LinearLayout >
 </LinearLayout>

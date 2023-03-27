@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="registerTextSize">40sp</dimen>
-    <dimen name="registerInputTextMarginBottomSize">10dp</dimen>
+    <dimen name="registerInputTextMarginBottomSize">15dp</dimen>
+    <dimen name="registerFormMargin">50dp</dimen>
 </resources>
