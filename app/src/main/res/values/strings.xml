@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Medick</string>
+    <string name="register">Registracija</string>
+    <string name="if_you_have_an_account_you_can_login_here">If you have an account, you can login here.</string>
+    <string name="adrsa_stanovanja">Adrsa stanovanja</string>
+    <string name="telefon">Telefon</string>
+    <string name="email">Email</string>
+    <string name="prezime">Prezime</string>
+    <string name="ime">Ime</string>
+    <string name="buttonRegisterText">Register</string>
+    <string name="ponovite_lozinku">Ponovite lozinku</string>
+    <string name="lozinka">Lozinka</string>
+</resources>

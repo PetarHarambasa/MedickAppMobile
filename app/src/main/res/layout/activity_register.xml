@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity"
+    android:layout_margin="30dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/register"
+        android:textSize="@dimen/registerTextSize"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/imeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ime"
+        android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+    <EditText
+        android:id="@+id/prezimeEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/prezime"
+        android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+    <EditText
+        android:id="@+id/emailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+    <EditText
+        android:id="@+id/telefonEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/telefon"
+        android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+    <EditText
+        android:id="@+id/adresaStanovanjaEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/adrsa_stanovanja"
+        android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+    <EditText
+        android:id="@+id/lozinkaEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lozinka"
+        android:inputType="textPassword"
+        android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+    <EditText
+        android:id="@+id/ponovnoLozinkaEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/ponovite_lozinku"
+        android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/buttonRegisterText" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/if_you_have_an_account_you_can_login_here"
+        android:layout_gravity="center"/>
+
+</LinearLayout>
