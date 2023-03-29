@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".LoginActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/registerFormMargin">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:textSize="@dimen/registerTextSize"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <EditText
+            android:id="@+id/lozinkaEditText"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lozinka"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+        <Button
+            android:id="@+id/loginButton"
+            android:backgroundTint="@color/lightRed"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonLoginText"
+            android:textAllCaps="false"/>
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/responseMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/if_you_dont_have_an_account_you_can"
+            android:layout_gravity="center"/>
+
+        <Button
+            android:layout_gravity="center"
+            android:textColor="@color/gray"
+            android:id="@+id/goToRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textSize="@dimen/buttonTextLoginHereSize"
+            android:text="@string/register_here"
+            style="?android:attr/borderlessButtonStyle" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -76,14 +76,34 @@
     <Button
         android:id="@+id/registerButton"
         android:backgroundTint="@color/lightRed"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/buttonRegisterText" />
+        android:text="@string/buttonRegisterText"
+        android:textAllCaps="false"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/responseMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/if_you_have_an_account_you_can_login_here"
+        android:text="@string/if_you_have_an_account_you_can"
         android:layout_gravity="center"/>
+
+        <Button
+            android:layout_gravity="center"
+            android:textColor="@color/gray"
+            android:id="@+id/goToLoginButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textSize="@dimen/buttonTextLoginHereSize"
+            android:text="@string/login_here"
+            style="?android:attr/borderlessButtonStyle" />
     </LinearLayout >
 </LinearLayout>

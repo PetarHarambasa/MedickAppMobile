@@ -1,5 +1,8 @@
 package hr.medick
 
+
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +15,10 @@ import java.io.IOException
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var binding: ActivityRegisterBinding
+    private var registerThread = Thread()
+    private var isRegistriran: Boolean = true
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
@@ -31,6 +37,9 @@ class RegisterActivity : AppCompatActivity() {
             // ip of device that is vrtiti backend
             // žično ipadesa: 192.168.0.126 žično ne radi
             // bežično ipadrsa: 192.168.1.3 radi ko mašina
+            // ipadrsa za emulator: 10.0.2.2
+            // i guess dok publishamo backend na neki server stavljamo ip od servera
+            // val url = "http://192.168.1.3:8080/mobileRegister" ili val url = "{ngrok link}/mobileRegister"
             val url = "http://192.168.1.3:8080/mobileRegister"
             val osoba = Osoba(
                 null,
@@ -46,14 +55,29 @@ class RegisterActivity : AppCompatActivity() {
             if (ime.isEmpty() || prezime.isEmpty() || email.isEmpty() || telefon.isEmpty() || adresaStanovanja.isEmpty() || lozinka.isEmpty() || ponovljenaLozinka.isEmpty()) {
                 Toast.makeText(this, "Molim, popunite sva polja", Toast.LENGTH_SHORT).show()
             } else if (!email.contains("@")) {
-                Toast.makeText(this, "Molim, upisite svoj email", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Molim, upisite ispravan email", Toast.LENGTH_SHORT).show()
             } else if (lozinka.trim() != ponovljenaLozinka.trim()) {
                 Toast.makeText(this, "Molim, potvrdite lozinku", Toast.LENGTH_SHORT).show()
             } else {
                 saveData(url, osoba)
+                if (isRegistriran) {
+                    binding.responseMessage.text = "Registracija uspiješna!"
+                } else {
+                    binding.responseMessage.text = "Registracija neuspješna!"
+                }
                 clearInputs()
+                registerThread.interrupt()
             }
         }
+
+        binding.goToLoginButton.setOnClickListener {
+            openLoginActivity()
+        }
+    }
+
+    private fun openLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
     }
 
     private fun saveData(url: String, osoba: Osoba) {
@@ -68,15 +92,25 @@ class RegisterActivity : AppCompatActivity() {
             .build()
 
 
-        val gfgThread = Thread {
+        registerThread = Thread {
             try {
                 // Your network activity
-                val result = client.newCall(request).enqueue(object : Callback{
+                val result = client.newCall(request).enqueue(object : Callback {
                     override fun onFailure(call: Call, e: IOException) {
                         println(e)
                     }
 
                     override fun onResponse(call: Call, response: Response) {
+                        val responseBody = client.newCall(request).execute().body
+                        val stringCheck = responseBody?.string()
+                        println(stringCheck)
+                        if (stringCheck != "EmailAlreadyExists") {
+                            isRegistriran = true
+                            println("Registracija uspješna!")
+                        } else {
+                            isRegistriran = false
+                            println("Registracija neuspješna!")
+                        }
                         println(response)
                     }
                 })
@@ -86,7 +120,7 @@ class RegisterActivity : AppCompatActivity() {
             }
         }
 
-        gfgThread.start()
+        registerThread.start()
     }
 
     fun clearInputs() {
