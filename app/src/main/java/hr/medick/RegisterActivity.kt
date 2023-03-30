@@ -60,13 +60,14 @@ class RegisterActivity : AppCompatActivity() {
                 Toast.makeText(this, "Molim, potvrdite lozinku", Toast.LENGTH_SHORT).show()
             } else {
                 saveData(url, osoba)
+                clearInputs()
+                registerThread.interrupt()
+
                 if (isRegistriran) {
                     binding.responseMessage.text = "Registracija uspiješna!"
                 } else {
                     binding.responseMessage.text = "Registracija neuspješna!"
                 }
-                clearInputs()
-                registerThread.interrupt()
             }
         }
 
@@ -103,15 +104,17 @@ class RegisterActivity : AppCompatActivity() {
                     override fun onResponse(call: Call, response: Response) {
                         val responseBody = client.newCall(request).execute().body
                         val stringCheck = responseBody?.string()
-                        println(stringCheck)
-                        if (stringCheck != "EmailAlreadyExists") {
-                            isRegistriran = true
-                            println("Registracija uspješna!")
-                        } else {
+                        if (response.code == 200) {
+                            println(stringCheck)
                             isRegistriran = false
+                            println("Registracija uspješna!")
+                            println(response.message)
+                        } else {
+                            println(stringCheck)
+                            isRegistriran = true
                             println("Registracija neuspješna!")
+                            println(response.message)
                         }
-                        println(response)
                     }
                 })
                 println(result)

@@ -66,7 +66,6 @@ class LoginActivity : AppCompatActivity() {
             .url(url)
             .post(requestBody)
             .build()
-
         loginThread = Thread {
             try {
                 // Your network activity
@@ -83,8 +82,8 @@ class LoginActivity : AppCompatActivity() {
                                 gson.fromJson(responseBody!!.string(), Osoba::class.java)
 
                             println(osoba)
-                            if (!osoba?.email.isNullOrBlank()){
-                                 openMainActivity()
+                            if (!osoba?.email.isNullOrBlank()) {
+                                openMainActivity()
                             }
                         }
                         println(response)
