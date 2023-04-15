@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewReminderActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/marginPodsjetnik">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/novipodsjetnik"
+            android:textSize="@dimen/registerTextSize"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:src="@drawable/back_icon"
+            android:layout_marginTop="10dp"
+            app:backgroundTint="@color/lightRed"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ime_lijeka"
+            android:textSize="@dimen/textSizeForNewReminderLabels"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/imeLijekaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ime_lijeka_hint"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/doza_lijeka"
+            android:textSize="@dimen/textSizeForNewReminderLabels"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/dozaLijekaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/doza_lijeka_hint"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/na_in_primjene"
+            android:textSize="@dimen/textSizeForNewReminderLabels"
+            android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/putaDnevnoEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/broj_puta_dnevno_hint"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"
+            android:layout_marginEnd="@dimen/marginEndNacinPrimjene"
+            android:ems="2"
+            android:inputType="number"
+            android:gravity="center_horizontal"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/puta_dnevno"
+            android:textSize="@dimen/textSizeForNewReminderLabels"
+            android:textStyle="bold"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/tabletaEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/broj_tableta_hint"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"
+            android:layout_marginEnd="@dimen/marginEndNacinPrimjene"
+            android:ems="2"
+            android:inputType="number"
+            android:gravity="center_horizontal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tableta"
+            android:textSize="@dimen/textSizeForNewReminderLabels"
+            android:textStyle="bold" />
+    </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/satiRazmakaEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/broj_sati_razmaka_hint"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"
+            android:layout_marginEnd="@dimen/marginEndNacinPrimjene"
+            android:ems="2"
+            android:gravity="center_horizontal"
+            android:inputType="numberDecimal"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sati_razmaka"
+            android:textSize="@dimen/textSizeForNewReminderLabels"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/datum_prvog_uzimanja_lijeka"
+            android:textSize="@dimen/textSizeForNewReminderLabels"
+            android:textStyle="bold" />
+        <EditText
+            android:id="@+id/datePickerEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/izaberi_datum"
+            android:layout_marginBottom="@dimen/marginBottomDatumUzimanjaLijeka"/>
+
+        <Button
+            android:id="@+id/addNewReminder"
+            android:backgroundTint="@color/lightRed"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/postavi_novi_podjestnik"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="@dimen/marginRightLeftAddNewReminderButton"
+            android:layout_marginLeft="@dimen/marginRightLeftAddNewReminderButton"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
+</LinearLayout>
