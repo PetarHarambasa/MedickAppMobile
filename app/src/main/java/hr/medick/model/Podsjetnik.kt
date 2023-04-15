@@ -1,9 +1,11 @@
 package hr.medick.model
 
-import java.util.*
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class Podsjetnik(
     val id: Long? = null,
     val terapija: Terapija? = null,
-    val uzez: Boolean? = null
-)
+    val uzet: Boolean? = null
+): Parcelable

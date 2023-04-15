@@ -9,4 +9,5 @@
     <dimen name="marginBottomDatumUzimanjaLijeka">20dp</dimen>
     <dimen name="marginEndNacinPrimjene">10dp</dimen>
     <dimen name="marginRightLeftAddNewReminderButton">40dp</dimen>
+    <dimen name="listViewHeight">400dp</dimen>
 </resources>
