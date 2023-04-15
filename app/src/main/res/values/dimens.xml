@@ -4,4 +4,9 @@
     <dimen name="registerInputTextMarginBottomSize">15dp</dimen>
     <dimen name="registerFormMargin">50dp</dimen>
     <dimen name="buttonTextLoginHereSize">14sp</dimen>
+    <dimen name="marginPodsjetnik">20dp</dimen>
+    <dimen name="textSizeForNewReminderLabels">22sp</dimen>
+    <dimen name="marginBottomDatumUzimanjaLijeka">20dp</dimen>
+    <dimen name="marginEndNacinPrimjene">10dp</dimen>
+    <dimen name="marginRightLeftAddNewReminderButton">40dp</dimen>
 </resources>
