@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import hr.medick.databinding.ActivityRegisterBinding
 import hr.medick.model.Osoba
+import hr.medick.properties.UrlProperties.IP_ADDRESS
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
@@ -40,7 +41,7 @@ class RegisterActivity : AppCompatActivity() {
             // ipadrsa za emulator: 10.0.2.2
             // i guess dok publishamo backend na neki server stavljamo ip od servera
             // val url = "http://192.168.1.3:8080/mobileRegister" ili val url = "{ngrok link}/mobileRegister"
-            val url = "http://192.168.1.3:8080/mobileRegister"
+            val url = "http://$IP_ADDRESS:8080/mobileRegister"
             val osoba = Osoba(
                 null,
                 ime.toString(),
