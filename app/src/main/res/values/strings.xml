@@ -31,4 +31,5 @@
     <string name="datum_prvog_uzimanja_lijeka">Datum prvog uzimanja lijeka</string>
     <string name="izaberi_datum">Izaberi datum</string>
     <string name="postavi_novi_podjestnik">Postavi novi podjestnik</string>
+    <string name="listItemText">Lijek</string>
 </resources>
