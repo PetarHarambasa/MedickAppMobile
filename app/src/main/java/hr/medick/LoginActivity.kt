@@ -104,6 +104,7 @@ class LoginActivity : AppCompatActivity() {
         loginThread.start()
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun loadRemindersIntoList(
         url: String,
         osoba: Osoba,

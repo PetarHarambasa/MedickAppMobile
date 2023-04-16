@@ -6,16 +6,70 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marginBTLforLLforItemList"
+        android:layout_marginTop="@dimen/marginBTLforLLforItemList"
+        android:layout_marginBottom="@dimen/marginBTLforLLforItemList"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/imeLijekaTextViewInListView"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/listItemText"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:orientation="horizontal">
 
+            <TextView
+                android:id="@+id/imeLijekaTextViewInListView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="@string/listItemText"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsizeItemListPrviRed"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/dozaLijekaTextViewInListView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/listItemText"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textsizeItemListPrviRed"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/brojTabletaTextViewInListView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/listItemText"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/textsizeItemListDrugiRed" />
+            <TextView
+                android:id="@+id/brojPutaDnevnoTextViewInListView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/listItemText"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/textsizeItemListDrugiRed"/>
+        </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            <TextView
+                android:id="@+id/brojSvakihSatiTextViewInListView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/listItemText"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/textsizeItemListDrugiRed"/>
+
+        </LinearLayout>
     </LinearLayout>
 
 </ScrollView>

@@ -2,10 +2,8 @@ package hr.medick
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Parcelable
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.RecyclerView
 import hr.medick.adapter.PodsjetnikAdapter
 import hr.medick.databinding.ActivityReminderBinding
 import hr.medick.model.Osoba
@@ -26,7 +24,7 @@ class ReminderActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.fabNew.setOnClickListener {
-            openNewReminderActivity()
+            openNewReminderActivity(listOfPodsjetniks)
         }
 
 
@@ -40,11 +38,13 @@ class ReminderActivity : AppCompatActivity() {
         listView.adapter = adapter
     }
 
-    private fun openNewReminderActivity() {
+    private fun openNewReminderActivity(listOfPodsjetniks: List<Podsjetnik>) {
         val osoba: Osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
         val intent = Intent(this, NewReminderActivity::class.java)
         println("Osoba:$osoba")
+        println("listOfPodsjetniks:$listOfPodsjetniks")
         intent.putExtra("OsobaPacijent", osoba)
+        intent.putExtra("PodsjetnikList", ArrayList(listOfPodsjetniks))
         startActivity(intent)
     }
 }
