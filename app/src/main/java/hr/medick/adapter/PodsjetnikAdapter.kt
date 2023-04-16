@@ -1,5 +1,6 @@
 package hr.medick.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -28,14 +29,23 @@ class PodsjetnikAdapter(private val context: ReminderActivity,
         return position.toLong()
     }
 
+    @SuppressLint("SetTextI18n", "ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
         val rowView = inflater.inflate(R.layout.list_item_podsjetnik, parent, false)
 
         val lijekNazivInList = rowView.findViewById<TextView>(R.id.imeLijekaTextViewInListView)
+        val lijekDozaInList = rowView.findViewById<TextView>(R.id.dozaLijekaTextViewInListView)
+        val brojTabletaInList = rowView.findViewById<TextView>(R.id.brojTabletaTextViewInListView)
+        val brojPutaDnevnoInList = rowView.findViewById<TextView>(R.id.brojPutaDnevnoTextViewInListView)
+        val brojSvakihSatiInList = rowView.findViewById<TextView>(R.id.brojSvakihSatiTextViewInListView)
 
         val podsjetnik = getItem(position) as Podsjetnik
-        lijekNazivInList.text = podsjetnik.terapija?.lijek?.naziv
+        lijekNazivInList.text = podsjetnik.terapija?.lijek?.naziv+","
+        lijekDozaInList.text = podsjetnik.terapija?.dozalijeka
+        brojTabletaInList.text = "Preostalo "+podsjetnik.terapija?.kolicinatableta.toString()+" tableta, "
+        brojSvakihSatiInList.text = "svakih "+podsjetnik.terapija?.ponavljanja.toString()+"h"
+        brojPutaDnevnoInList.text = podsjetnik.terapija?.kolicinadnevno.toString()+" puta dnevno, "
 
         return rowView
 

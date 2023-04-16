@@ -9,5 +9,8 @@
     <dimen name="marginBottomDatumUzimanjaLijeka">20dp</dimen>
     <dimen name="marginEndNacinPrimjene">10dp</dimen>
     <dimen name="marginRightLeftAddNewReminderButton">40dp</dimen>
-    <dimen name="listViewHeight">400dp</dimen>
+    <dimen name="listViewHeight">500dp</dimen>
+    <dimen name="textsizeItemListDrugiRed">17sp</dimen>
+    <dimen name="marginBTLforLLforItemList">20dp</dimen>
+    <dimen name="textsizeItemListPrviRed">30sp</dimen>
 </resources>
