@@ -3,6 +3,7 @@
     <dimen name="registerTextSize">40sp</dimen>
     <dimen name="registerInputTextMarginBottomSize">15dp</dimen>
     <dimen name="registerFormMargin">50dp</dimen>
+    <dimen name="registerFormMarginHorizontal">35dp</dimen>
     <dimen name="buttonTextLoginHereSize">14sp</dimen>
     <dimen name="marginPodsjetnik">20dp</dimen>
     <dimen name="textSizeForNewReminderLabels">22sp</dimen>

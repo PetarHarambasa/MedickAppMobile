@@ -2,6 +2,7 @@ package hr.medick
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils.replace
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import hr.medick.adapter.PodsjetnikAdapter
