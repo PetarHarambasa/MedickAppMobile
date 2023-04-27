@@ -3,14 +3,13 @@ package hr.medick
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
-import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import hr.medick.databinding.ActivityNewReminderBinding
+import hr.medick.fragments.reminder.NewReminderFragment
 import hr.medick.model.Osoba
 import hr.medick.model.Podsjetnik
 import hr.medick.properties.UrlProperties.IP_ADDRESS
@@ -27,14 +26,12 @@ class NewReminderActivity : AppCompatActivity() {
 
     var podsjetnikList: List<Podsjetnik> = ArrayList()
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewReminderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //opens the fragment
+        //opens the 1st fragment
         supportFragmentManager.commit {
             replace<NewReminderFragment>(R.id.fragmentContianer)
             setReorderingAllowed(true)
