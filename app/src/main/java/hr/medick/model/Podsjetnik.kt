@@ -8,4 +8,4 @@ data class Podsjetnik(
     val id: Long? = null,
     val terapija: Terapija? = null,
     val uzet: Boolean? = null
-): Parcelable
+) : Parcelable
