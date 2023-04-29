@@ -4,13 +4,16 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import hr.medick.databinding.ActivityNewVitalsBinding
 import hr.medick.model.Osoba
 import hr.medick.model.Podsjetnik
 import hr.medick.model.Vitali
 import hr.medick.properties.UrlProperties
 import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
+import java.lang.reflect.Type
 
 class NewVitalsActivity : AppCompatActivity() {
 
@@ -18,6 +21,7 @@ class NewVitalsActivity : AppCompatActivity() {
     private var newVitalsThread = Thread()
 
     var podsjetnikList: List<Podsjetnik> = ArrayList()
+    var vitaliList: List<Vitali> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +53,6 @@ class NewVitalsActivity : AppCompatActivity() {
                 intentVitalsActivity
             )
         }
-
     }
 
     private fun saveNewVitals(
@@ -94,7 +97,6 @@ class NewVitalsActivity : AppCompatActivity() {
                                 osobaPacijent,
                                 intentVitalsActivity
                             )
-
                         }
                         println(response)
                     }
@@ -111,13 +113,65 @@ class NewVitalsActivity : AppCompatActivity() {
         intentVitalsActivity.putExtra("OsobaPacijent", osobaPacijent)
         podsjetnikList = intent.getParcelableArrayListExtra("PodsjetnikList")!!
         intentVitalsActivity.putExtra("PodsjetnikList", ArrayList(podsjetnikList))
+
+        val urlMobileVitals = "http://${UrlProperties.IP_ADDRESS}:8080/mobileVitals"
+        loadRemindersIntoList(urlMobileVitals, osobaPacijent, intentVitalsActivity)
+    }
+
+    private fun loadRemindersIntoList(
+        urlMobileVitals: String,
+        osobaPacijent: Osoba,
+        intentVitalsActivity: Intent
+    ) {
+        val client = OkHttpClient()
+
+        val json = Gson().toJson(osobaPacijent)
+        println(json)
+        val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), json)
+
+        val request = Request.Builder()
+            .url(urlMobileVitals)
+            .post(requestBody)
+            .build()
+
+        try {
+            // Your network activity
+            val result = client.newCall(request).enqueue(object : Callback {
+                override fun onFailure(call: Call, e: IOException) {
+                    println(e)
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    if (response.isSuccessful) {
+                        val gson = Gson()
+                        val responseBody = client.newCall(request).execute().body
+
+                        val type: Type = object : TypeToken<List<Vitali?>?>() {}.type
+                        vitaliList = gson.fromJson(responseBody!!.string(), type)
+
+                        addVitaliListToIntentExtra(intentVitalsActivity)
+                    }
+                    println(response)
+                }
+
+            })
+            println(result)
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    private fun addVitaliListToIntentExtra(intentVitalsActivity: Intent) {
+        intentVitalsActivity.putExtra("VitaliList", ArrayList(vitaliList))
         startActivity(intentVitalsActivity)
     }
 
     private fun goBackToReminderActivity(osobaPacijent: Osoba, intentVitalsActivity: Intent) {
         podsjetnikList = intent.getParcelableArrayListExtra("PodsjetnikList")!!
+        vitaliList = intent.getParcelableArrayListExtra("VitaliList")!!
         intentVitalsActivity.putExtra("PodsjetnikList", ArrayList(podsjetnikList))
         intentVitalsActivity.putExtra("OsobaPacijent", osobaPacijent)
+        intentVitalsActivity.putExtra("VitaliList", ArrayList(vitaliList))
         startActivity(intentVitalsActivity)
     }
 }

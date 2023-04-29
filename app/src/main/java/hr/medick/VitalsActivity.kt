@@ -29,7 +29,7 @@ class VitalsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.fabNew.setOnClickListener {
-            openNewVitalsActivity()
+            openNewVitalsActivity(listOfVitals)
         }
 
         val bottomNavigationView =
@@ -53,13 +53,14 @@ class VitalsActivity : AppCompatActivity() {
         listView.adapter = adapter
     }
 
-    private fun openNewVitalsActivity() {
+    private fun openNewVitalsActivity(listOfVitals: List<Vitali>) {
         val osoba: Osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
         val intentNewVitalsActivity = Intent(this, NewVitalsActivity::class.java)
 
         podsjetnikList = intent.getParcelableArrayListExtra("PodsjetnikList")!!
         intentNewVitalsActivity.putExtra("PodsjetnikList", ArrayList(podsjetnikList))
         intentNewVitalsActivity.putExtra("OsobaPacijent", osoba)
+        intentNewVitalsActivity.putExtra("VitaliList", ArrayList(listOfVitals))
         startActivity(intentNewVitalsActivity)
     }
 
