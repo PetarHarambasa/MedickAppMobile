@@ -9,7 +9,7 @@ import androidx.fragment.app.replace
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import hr.medick.databinding.ActivityNewReminderBinding
-import hr.medick.fragments.reminder.NewReminderFragment
+import hr.medick.fragments.reminder.MedicationNameFragment
 import hr.medick.model.Osoba
 import hr.medick.model.Podsjetnik
 import hr.medick.properties.UrlProperties.IP_ADDRESS
@@ -33,7 +33,7 @@ class NewReminderActivity : AppCompatActivity() {
 
         //opens the 1st fragment
         supportFragmentManager.commit {
-            replace<NewReminderFragment>(R.id.fragmentContianer)
+            replace<MedicationNameFragment>(R.id.fragmentContianer)
             setReorderingAllowed(true)
             addToBackStack(null)
         }

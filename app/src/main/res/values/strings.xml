@@ -36,4 +36,14 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="next">Next</string>
     <string name="back">back</string>
+    <string name="unesite_ime_lijeka">Unesite ime lijeka</string>
+    <string name="mislite_da_ste_ne_to_krivo_upisali">Mislite da ste nešto krivo upisali?</string>
+    <string name="vrati_me_nazad">Vrati me nazad</string>
+
+    <string-array name="DoseMetrics">
+        <item>mg</item>
+        <item>g</item>
+        <item>ml</item>
+        <item>dl</item>
+    </string-array>
 </resources>

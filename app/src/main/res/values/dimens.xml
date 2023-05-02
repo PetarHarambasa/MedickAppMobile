@@ -14,4 +14,12 @@
     <dimen name="textsizeItemListDrugiRed">17sp</dimen>
     <dimen name="marginBTLforLLforItemList">20dp</dimen>
     <dimen name="textsizeItemListPrviRed">30sp</dimen>
+    <dimen name="horizontal_margin_reminder">40dp</dimen>
+    <dimen name="text_size_reminder">30sp</dimen>
+    <dimen name="medication_Name_Height">40dp</dimen>
+    <dimen name="medicationName_marginTop">40dp</dimen>
+    <dimen name="nextBtn_marginTop">60dp</dimen>
+    <dimen name="backBtn_marginTop">20dp</dimen>
+    <dimen name="doseMetricSpinner_width">100dp</dimen>
+    <dimen name="doseMetricSpinner_height">40dp</dimen>
 </resources>

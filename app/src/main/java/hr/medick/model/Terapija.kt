@@ -6,13 +6,20 @@ import java.util.*
 
 @Parcelize
 data class Terapija(
-    val id: Long? = null,
-    val lijek: Lijek? = null,
-    val pacijent: Pacijent? = null,
-    val vitali: Vitali? = null,
-    val dozalijeka: String? = null,
-    val ponavljanja: Float? = null,
-    val prvadoza: Date? = null,
-    val kolicinatableta: Int? = null,
-    val kolicinadnevno: Int? = null,
-): Parcelable
+    var id: Long? = null,
+    var lijek: Lijek? = null,
+    var pacijent: Pacijent? = null,
+    var vitali: Vitali? = null,
+    var dozalijeka: String? = null,
+    var ponavljanja: Float? = null,
+    var prvadoza: Date? = null,
+    var kolicinatableta: Int? = null,
+    var kolicinadnevno: Int? = null,
+) : Parcelable {
+    //Singleton
+    companion object {
+        private val instance = Terapija()
+
+        fun getInstance() = instance
+    }
+}
