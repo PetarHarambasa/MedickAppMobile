@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/podsjetnikList"
+        android:icon="@drawable/reminders"
+        android:title="Podsjetnici" />
+
+    <item
+        android:id="@+id/vitaliList"
+        android:icon="@drawable/vitals"
+        android:title="Vitali" />
+</menu>
