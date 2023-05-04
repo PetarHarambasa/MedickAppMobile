@@ -1,8 +1,10 @@
 package hr.medick
 
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
@@ -31,6 +33,18 @@ class NewReminderActivity : AppCompatActivity() {
         binding = ActivityNewReminderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//       This option is if we want to kill the activity after back button pressed.
+//        val callback = onBackPressedDispatcher.addCallback(this) {
+//            finish()
+//        }
+
+//       This option is if we want to kill the activity after the last fragment
+        supportFragmentManager.addOnBackStackChangedListener {
+            if (supportFragmentManager.backStackEntryCount == 0){
+                finish()
+            }
+        }
+
         //opens the 1st fragment
         supportFragmentManager.commit {
             replace<MedicationNameFragment>(R.id.fragmentContianer)
@@ -41,6 +55,8 @@ class NewReminderActivity : AppCompatActivity() {
         val intentReminderActivity = Intent(this, ReminderActivity::class.java)
 
         podsjetnikList = intent.getParcelableArrayListExtra("PodsjetnikList")!!
+
+
 
 //        binding.datePickerEditText.inputType = InputType.TYPE_NULL
 //

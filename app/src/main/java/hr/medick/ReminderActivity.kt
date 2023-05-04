@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.text.TextUtils.replace
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import hr.medick.adapter.PodsjetnikAdapter
 import hr.medick.databinding.ActivityReminderBinding
+import hr.medick.fragments.reminder.MedicationNameFragment
 import hr.medick.model.Osoba
 import hr.medick.model.Podsjetnik
 
