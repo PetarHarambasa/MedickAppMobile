@@ -36,8 +36,16 @@ class InteravalOfConsumptionFragment : Fragment() {
         otherIntervBtn = binding.otherIntervalBtn
 
         backBtn.setOnClickListener {
+//            parentFragmentManager.commit {
+//                replace<MedicationNameFragment>(R.id.fragmentContianer)
+//                setReorderingAllowed(true)
+//                addToBackStack(null)
+//            }
+            parentFragmentManager.popBackStack()
+        }
+        dailyBtn.setOnClickListener {
             parentFragmentManager.commit {
-                replace<MedicationNameFragment>(R.id.fragmentContianer)
+                replace<HowManyDailyFragment>(R.id.fragmentContianer)
                 setReorderingAllowed(true)
                 addToBackStack(null)
             }

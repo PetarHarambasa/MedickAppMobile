@@ -39,6 +39,14 @@
     <string name="unesite_ime_lijeka">Unesite ime lijeka</string>
     <string name="mislite_da_ste_ne_to_krivo_upisali">Mislite da ste nešto krivo upisali?</string>
     <string name="vrati_me_nazad">Vrati me nazad</string>
+    <string name="unesite_dozu_lijeka">Unesite dozu lijeka</string>
+    <string name="lijek_pijete">Lijek pijete...</string>
+    <string name="jednom_dnevno">Jednom dnevno</string>
+    <string name="vi_e_puta_dnevno">Više puta dnevno</string>
+    <string name="pije_li_se_dnevno_ili_u_drugim_intervalima">Pije li se dnevno ili u drugim intervalima</string>
+    <string name="dnevno">Dnevno</string>
+    <string name="drugi_intervali">Drugi intervali</string>
+    <string name="odaberite_vrijeme">Odaberite vrijeme</string>
 
     <string-array name="DoseMetrics">
         <item>mg</item>

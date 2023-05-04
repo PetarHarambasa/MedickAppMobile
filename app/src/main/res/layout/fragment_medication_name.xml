@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="@string/unesite_ime_lijeka"
-        android:textSize="@dimen/text_size_reminder"
+        android:textSize="@dimen/mainReminderQuestionTextSize"
         android:gravity="center"/>
 
     <EditText

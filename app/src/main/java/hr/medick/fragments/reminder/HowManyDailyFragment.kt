@@ -1,60 +1,95 @@
 package hr.medick.fragments.reminder
 
+import android.app.TimePickerDialog
+import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.LinearLayout
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import hr.medick.R
+import hr.medick.databinding.FragmentHowManyDailyBinding
+import java.util.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class HowManyDailyFragment : Fragment() { // TODO: sakri nepotrebne stvari iz layouta i nastavi s ostalim fragmentima
 
-/**
- * A simple [Fragment] subclass.
- * Use the [HowManyDailyFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class HowManyDailyFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private lateinit var binding: FragmentHowManyDailyBinding
+    private lateinit var dailyBtn: Button
+    private lateinit var moreDailyBtn: Button
+    private lateinit var backBtn: Button
+    private lateinit var dailyTimePicker: EditText
+    private lateinit var intervalTimePicker: EditText
+    private lateinit var firstPillTimePicker: EditText
+    private lateinit var oneDailyLinearLayout: LinearLayout
+    private lateinit var moreDailyLinearLayout: LinearLayout
+    private lateinit var mainLinearLayout: LinearLayout
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_how_many_daily, container, false)
+        binding = FragmentHowManyDailyBinding.inflate(inflater, container, false)
+        iniComponents()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HowManyDailyFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HowManyDailyFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    private fun iniComponents() {
+        dailyTimePicker = binding.dailyTimePicker
+        intervalTimePicker = binding.intervalTimePicker
+        firstPillTimePicker = binding.firstPillTimePicker
+        dailyBtn = binding.dailyBtn
+        moreDailyBtn = binding.moreDailyBtn
+        backBtn = binding.backBtn
+        oneDailyLinearLayout = binding.oneDailyLinearLayout
+        moreDailyLinearLayout = binding.moreDailyLinearLayout
+        mainLinearLayout = binding.mainLinearLayout
+
+        dailyTimePicker.setOnClickListener {
+            showDatePickerDialog(dailyTimePicker)
+        }
+        intervalTimePicker.setOnClickListener {
+            showDatePickerDialog(intervalTimePicker)
+        }
+        firstPillTimePicker.setOnClickListener {
+            showDatePickerDialog(firstPillTimePicker)
+        }
+
+        dailyBtn.setOnClickListener{
+            mainLinearLayout.visibility = View.GONE
+            oneDailyLinearLayout.visibility = View.VISIBLE
+        }
+        moreDailyBtn.setOnClickListener{
+            mainLinearLayout.visibility = View.GONE
+            moreDailyLinearLayout.visibility = View.VISIBLE
+        }
+        backBtn.setOnClickListener{
+            parentFragmentManager.popBackStack()
+        }
     }
+
+    private fun showDatePickerDialog(timePicker: EditText) {
+        val calendar = Calendar.getInstance()
+        val hour = calendar.get(Calendar.HOUR)
+        val minute = calendar.get(Calendar.MINUTE)
+
+        val timePickerDialog = TimePickerDialog(  //TODO: usporedi s petrovim
+            requireContext(),
+            {view, hour, minute ->
+                val selectTime = "$hour:$minute"
+                timePicker.setText(selectTime)
+            }, hour, minute, true
+        )
+
+        timePickerDialog.show()
+    }
+
+
+
 }

@@ -18,27 +18,27 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Pije li se dnevno ili u drugim intervalima"
-            android:textSize="30sp"
+            android:text="@string/pije_li_se_dnevno_ili_u_drugim_intervalima"
+            android:textSize="@dimen/mainReminderQuestionTextSize"
             android:gravity="center"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="40dp"
-            android:layout_marginTop="40dp"
+            android:paddingHorizontal="@dimen/btnIntervalContainer_paddingHorizontal"
+            android:layout_marginTop="@dimen/btnIntervalContainer_marginTop"
             android:gravity="center">
             <Button
                 android:id="@+id/dailyBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Dnevno"/>
+                android:text="@string/dnevno"/>
             <Button
                 android:id="@+id/otherIntervalBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Drugi intervali"/>
+                android:text="@string/drugi_intervali"/>
         </LinearLayout>
 
 

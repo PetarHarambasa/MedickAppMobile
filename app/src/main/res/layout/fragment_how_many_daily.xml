@@ -1,14 +1,141 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.reminder.HowManyDailyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:id="@+id/mainLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/lijek_pijete"
+                android:textSize="@dimen/mainReminderQuestionTextSize" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dailyBtn_marginTop"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/dailyBtn_paddingHorizontal">
+
+                <Button
+                    android:id="@+id/dailyBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/jednom_dnevno" />
+
+                <Button
+                    android:id="@+id/moreDailyBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/vi_e_puta_dnevno" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/oneDailyLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dailyBtn_marginTop"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/dailyBtn_paddingHorizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="U koliko sati pijete lijek?"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/dailyTimePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/marginBottomDatumUzimanjaLijeka"
+                android:ems="10"
+                android:hint="@string/odaberite_vrijeme" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/moreDailyLinearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/dailyBtn_marginTop"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/dailyBtn_paddingHorizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Koliko je sati razmaka između tableta"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/intervalTimePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/marginBottomDatumUzimanjaLijeka"
+                android:ems="10"
+                android:hint="@string/odaberite_vrijeme" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="Kada pijete prvu tabletu?"
+                android:textSize="30sp" />
+
+            <EditText
+                android:id="@+id/firstPillTimePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/marginBottomDatumUzimanjaLijeka"
+                android:ems="10"
+                android:hint="@string/odaberite_vrijeme" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/mislite_da_ste_ne_to_krivo_upisali"
+            android:textSize="@dimen/buttonTextLoginHereSize" />
+
+        <Button
+            android:id="@+id/backBtn"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/vrati_me_nazad"
+            android:textAllCaps="false"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/buttonTextLoginHereSize" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

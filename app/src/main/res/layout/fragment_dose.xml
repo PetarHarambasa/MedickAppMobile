@@ -18,8 +18,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Unesite dozu lijeka"
-            android:textSize="30sp"
+            android:text="@string/unesite_dozu_lijeka"
+            android:textSize="@dimen/mainReminderQuestionTextSize"
             android:gravity="center"/>
 
         <LinearLayout
