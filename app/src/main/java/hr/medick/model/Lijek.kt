@@ -5,6 +5,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Lijek(
-    val id: Long? = null,
-    val naziv: String? = null, val proizvodac: String? = null
+    var id: Long? = null,
+    var naziv: String? = null,
+    var proizvodac: String? = null
 ) : Parcelable

@@ -32,6 +32,28 @@
     <string name="izaberi_datum">Izaberi datum</string>
     <string name="postavi_novi_podjestnik">Postavi novi podjestnik</string>
     <string name="listItemText">Lijek</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="next">Next</string>
+    <string name="back">back</string>
+    <string name="unesite_ime_lijeka">Unesite ime lijeka</string>
+    <string name="mislite_da_ste_ne_to_krivo_upisali">Mislite da ste nešto krivo upisali?</string>
+    <string name="vrati_me_nazad">Vrati me nazad</string>
+    <string name="unesite_dozu_lijeka">Unesite dozu lijeka</string>
+    <string name="lijek_pijete">Lijek pijete...</string>
+    <string name="jednom_dnevno">Jednom dnevno</string>
+    <string name="vi_e_puta_dnevno">Više puta dnevno</string>
+    <string name="pije_li_se_dnevno_ili_u_drugim_intervalima">Pije li se dnevno ili u drugim intervalima</string>
+    <string name="dnevno">Dnevno</string>
+    <string name="drugi_intervali">Drugi intervali</string>
+    <string name="odaberite_vrijeme">Odaberite vrijeme</string>
+
+    <string-array name="DoseMetrics">
+        <item>mg</item>
+        <item>g</item>
+        <item>ml</item>
+        <item>dl</item>
+    </string-array>
     <string name="vitali">Vitali</string>
     <string name="novi_unos_vitala">Novi unos vitala</string>
     <string name="glukoza_u_krvi">Glukoza u krvi</string>
@@ -39,4 +61,14 @@
     <string name="krvni_tlak">Krvni tlak</string>
     <string name="krvni_tlak_iznos_hint">50 mmHg</string>
     <string name="dodaj_nove_vitale">Dodaj nove vitale</string>
+    <string name="title_activity_host">HostActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="reminders">Podsjetnici</string>
+    <string name="vitals">Vitali</string>
 </resources>

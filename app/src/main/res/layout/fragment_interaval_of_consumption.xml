@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.reminder.InteravalOfConsumptionFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@string/pije_li_se_dnevno_ili_u_drugim_intervalima"
+            android:textSize="@dimen/mainReminderQuestionTextSize"
+            android:gravity="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/btnIntervalContainer_paddingHorizontal"
+            android:layout_marginTop="@dimen/btnIntervalContainer_marginTop"
+            android:gravity="center">
+            <Button
+                android:id="@+id/dailyBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dnevno"/>
+            <Button
+                android:id="@+id/otherIntervalBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/drugi_intervali"/>
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mislite_da_ste_ne_to_krivo_upisali"
+            android:layout_gravity="center"
+            android:textSize="@dimen/buttonTextLoginHereSize"/>
+
+        <Button
+            android:id="@+id/backBtn"
+            android:layout_gravity="center"
+            android:textColor="@color/gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textSize="@dimen/buttonTextLoginHereSize"
+            android:text="@string/vrati_me_nazad"
+            style="?android:attr/borderlessButtonStyle" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

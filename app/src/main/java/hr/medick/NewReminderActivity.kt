@@ -1,13 +1,17 @@
 package hr.medick
 
 import android.app.DatePickerDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import hr.medick.databinding.ActivityNewReminderBinding
+import hr.medick.fragments.reminder.MedicationNameFragment
 import hr.medick.model.Osoba
 import hr.medick.model.Podsjetnik
 import hr.medick.properties.UrlProperties.IP_ADDRESS
@@ -29,47 +33,68 @@ class NewReminderActivity : AppCompatActivity() {
         binding = ActivityNewReminderBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//       This option is if we want to kill the activity after back button pressed.
+//        val callback = onBackPressedDispatcher.addCallback(this) {
+//            finish()
+//        }
+
+//       This option is if we want to kill the activity after the last fragment
+        supportFragmentManager.addOnBackStackChangedListener {
+            if (supportFragmentManager.backStackEntryCount == 0){
+                finish()
+            }
+        }
+
+        //opens the 1st fragment
+        supportFragmentManager.commit {
+            replace<MedicationNameFragment>(R.id.fragmentContianer)
+            setReorderingAllowed(true)
+            addToBackStack(null)
+        }
+
         val intentReminderActivity = Intent(this, ReminderActivity::class.java)
 
-        podsjetnikList = intent.getParcelableArrayListExtra("PodsjetnikList")!!
+        podsjetnikList = HostActivity.listOfPodsjetniks//intent.getParcelableArrayListExtra("PodsjetnikList")!!
 
-        binding.datePickerEditText.inputType = InputType.TYPE_NULL
 
-        binding.fabBack.setOnClickListener {
 
-            val osobaPacijent: Osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
-            goBackToReminderActivity(
-                osobaPacijent,
-                intentReminderActivity,
-                podsjetnikList
-            )
-        }
-
-        binding.datePickerEditText.setOnClickListener {
-            showDatePickerDialog()
-        }
-
-        binding.addNewReminder.setOnClickListener {
-            val imeLijeka = binding.imeLijekaEditText.text
-            val dozaLijeka = binding.dozaLijekaEditText.text
-            val putaDnevno = binding.putaDnevnoEditText.text
-            val tableta = binding.tabletaEditText.text
-            val satiRazmaka = binding.satiRazmakaEditText.text
-            val datumPrvogUzimanja = binding.datePickerEditText.text
-
-            val urlMobileSaveNewReminder = "http://${IP_ADDRESS}:8080/mobileSaveNewReminder"
-
-            saveNewReminder(
-                urlMobileSaveNewReminder,
-                imeLijeka.toString(),
-                dozaLijeka.toString(),
-                putaDnevno.toString(),
-                tableta.toString(),
-                satiRazmaka.toString(),
-                datumPrvogUzimanja.toString(),
-                intentReminderActivity
-            )
-        }
+//        binding.datePickerEditText.inputType = InputType.TYPE_NULL
+//
+//        binding.fabBack.setOnClickListener {
+//
+//            val osobaPacijent: Osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
+//            goBackToReminderActivity(
+//                osobaPacijent,
+//                intentReminderActivity,
+//                podsjetnikList
+//            )
+//        }
+//
+//        binding.datePickerEditText.setOnClickListener {
+//            showDatePickerDialog()
+//        }
+//
+//        binding.addNewReminder.setOnClickListener {
+//            val imeLijeka = binding.imeLijekaEditText.text
+//            val dozaLijeka = binding.dozaLijekaEditText.text
+//            val putaDnevno = binding.putaDnevnoEditText.text
+//            val tableta = binding.tabletaEditText.text
+//            val satiRazmaka = binding.satiRazmakaEditText.text
+//            val datumPrvogUzimanja = binding.datePickerEditText.text
+//
+//            val urlMobileSaveNewReminder = "http://${IP_ADDRESS}:8080/mobileSaveNewReminder"
+//
+//            saveNewReminder(
+//                urlMobileSaveNewReminder,
+//                imeLijeka.toString(),
+//                dozaLijeka.toString(),
+//                putaDnevno.toString(),
+//                tableta.toString(),
+//                satiRazmaka.toString(),
+//                datumPrvogUzimanja.toString(),
+//                intentReminderActivity
+//            )
+//        }
     }
 
     private fun saveNewReminder(
@@ -85,55 +110,55 @@ class NewReminderActivity : AppCompatActivity() {
 
         val client = OkHttpClient()
 
-        val osobaPacijent: Osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
+//        val osobaPacijent: Osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
 
-        println("osobaPacijent$osobaPacijent")
+//        println("osobaPacijent$osobaPacijent")
+//
+//        val requestBody = FormBody.Builder()
+//            .add("imeLijeka", imeLijeka)
+//            .add("dozaLijeka", dozaLijeka)
+//            .add("putaDnevno", putaDnevno)
+//            .add("tableta", tableta)
+//            .add("satiRazmaka", satiRazmaka)
+//            .add("datumPrvogUzimanja", datumPrvogUzimanja)
+//            .add("osobaPacijentId", osobaPacijent.id.toString())
+//            .build()
 
-        val requestBody = FormBody.Builder()
-            .add("imeLijeka", imeLijeka)
-            .add("dozaLijeka", dozaLijeka)
-            .add("putaDnevno", putaDnevno)
-            .add("tableta", tableta)
-            .add("satiRazmaka", satiRazmaka)
-            .add("datumPrvogUzimanja", datumPrvogUzimanja)
-            .add("osobaPacijentId", osobaPacijent.id.toString())
-            .build()
+//        val request = Request.Builder()
+//            .url(urlMobileSaveNewReminder)
+//            .post(requestBody)
+//            .build()
 
-        val request = Request.Builder()
-            .url(urlMobileSaveNewReminder)
-            .post(requestBody)
-            .build()
-
-        newReminderThread = Thread {
-            try {
-                // Your network activity
-                val result = client.newCall(request).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-                        println(e)
-                    }
-
-                    override fun onResponse(call: Call, response: Response) {
-                        if (response.isSuccessful) {
-                            val gson = Gson()
-                            val responseBody = client.newCall(request).execute().body
-                            val podsjetnik: Podsjetnik? =
-                                gson.fromJson(responseBody!!.string(), Podsjetnik::class.java)
-
-                            println("SPREMLJENPODSJETNIK$podsjetnik")
-                            openReminderActivity(
-                                osobaPacijent,
-                                intentReminderActivity
-                            )
-
-                        }
-                        println(response)
-                    }
-                })
-                println(result)
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
-        }
+//        newReminderThread = Thread {
+//            try {
+//                // Your network activity
+//                val result = client.newCall(request).enqueue(object : Callback {
+//                    override fun onFailure(call: Call, e: IOException) {
+//                        println(e)
+//                    }
+//
+//                    override fun onResponse(call: Call, response: Response) {
+//                        if (response.isSuccessful) {
+//                            val gson = Gson()
+//                            val responseBody = client.newCall(request).execute().body
+//                            val podsjetnik: Podsjetnik? =
+//                                gson.fromJson(responseBody!!.string(), Podsjetnik::class.java)
+//
+//                            println("SPREMLJENPODSJETNIK$podsjetnik")
+//                            openReminderActivity(
+//                                osobaPacijent,
+//                                intentReminderActivity
+//                            )
+//
+//                        }
+//                        println(response)
+//                    }
+//                })
+//                println(result)
+//            } catch (e: java.lang.Exception) {
+//                e.printStackTrace()
+//            }
+//        }
         newReminderThread.start()
     }
 
@@ -148,7 +173,7 @@ class NewReminderActivity : AppCompatActivity() {
             { view, year, monthOfYear, dayOfMonth ->
                 // Do something with the selected date
                 val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
-                binding.datePickerEditText.setText(selectedDate)
+//                binding.datePickerEditText.setText(selectedDate)
             }, year, month, day
         )
 
@@ -164,7 +189,7 @@ class NewReminderActivity : AppCompatActivity() {
         println("PodsjetnikList$podsjetnikList")
         intentReminderActivity.putExtra("OsobaPacijent", osobaPacijent)
         intentReminderActivity.putExtra("PodsjetnikList", ArrayList(podsjetnikList))
-        startActivity(intentReminderActivity)
+//        startActivity(intentReminderActivity)
     }
 
     private fun loadRemindersIntoList(
@@ -196,9 +221,9 @@ class NewReminderActivity : AppCompatActivity() {
                         val responseBody = client.newCall(request).execute().body
 
                         val type: Type = object : TypeToken<List<Podsjetnik?>?>() {}.type
-                        podsjetnikList = gson.fromJson(responseBody!!.string(), type)
-                        println("DrugiPustlIst$podsjetnikList")
-                        addPodsjtenikListToIntentExtra(intentReminderActivity)
+//                        podsjetnikList = gson.fromJson(responseBody!!.string(), type)
+//                        println("DrugiPustlIst$podsjetnikList")
+                        //addPodsjtenikListToIntentExtra(intentReminderActivity)
                     }
                     println(response)
                 }
@@ -211,10 +236,10 @@ class NewReminderActivity : AppCompatActivity() {
     }
 
     private fun addPodsjtenikListToIntentExtra(intentReminderActivity: Intent) {
-        intentReminderActivity.putExtra("PodsjetnikList", ArrayList(podsjetnikList))
-        println("KOAJJELISTA:$podsjetnikList")
-
-        startActivity(intentReminderActivity)
+//        intentReminderActivity.putExtra("PodsjetnikList", ArrayList(podsjetnikList))
+//        println("KOAJJELISTA:$podsjetnikList")
+//
+//        startActivity(intentReminderActivity)
     }
 
     private fun openReminderActivity(osobaPacijent: Osoba, intentReminderActivity: Intent) {
