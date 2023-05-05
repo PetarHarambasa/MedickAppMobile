@@ -54,4 +54,11 @@
         <item>ml</item>
         <item>dl</item>
     </string-array>
+    <string name="vitali">Vitali</string>
+    <string name="novi_unos_vitala">Novi unos vitala</string>
+    <string name="glukoza_u_krvi">Glukoza u krvi</string>
+    <string name="glukoza_u_krvi_iznos_hint">7.8 mmol/L</string>
+    <string name="krvni_tlak">Krvni tlak</string>
+    <string name="krvni_tlak_iznos_hint">50 mmHg</string>
+    <string name="dodaj_nove_vitale">Dodaj nove vitale</string>
 </resources>

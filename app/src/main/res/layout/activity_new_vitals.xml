@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NewVitalsActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/marginPodsjetnik">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/novi_unos_vitala"
+            android:textSize="@dimen/registerTextSize"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:src="@drawable/back_icon"
+            android:layout_marginTop="10dp"
+            app:backgroundTint="@color/lightRed"
+            android:layout_marginBottom="20dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/glukoza_u_krvi"
+            android:textSize="@dimen/textSizeForNewReminderLabels"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/glukozaUKrviEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/glukoza_u_krvi_iznos_hint"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/krvni_tlak"
+            android:textSize="@dimen/textSizeForNewReminderLabels"
+            android:textStyle="bold"/>
+
+        <EditText
+            android:id="@+id/krvniTlakEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/krvni_tlak_iznos_hint"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <Button
+            android:id="@+id/addNewVitals"
+            android:backgroundTint="@color/lightRed"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dodaj_nove_vitale"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginRight="@dimen/marginRightLeftAddNewReminderButton"
+            android:layout_marginLeft="@dimen/marginRightLeftAddNewReminderButton"
+            android:textAllCaps="false"/>
+    </LinearLayout>
+
+</LinearLayout>
