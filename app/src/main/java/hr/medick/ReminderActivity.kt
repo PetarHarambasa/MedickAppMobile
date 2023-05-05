@@ -5,6 +5,9 @@ import android.os.Bundle
 import android.text.TextUtils.replace
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import hr.medick.adapter.PodsjetnikAdapter
 import hr.medick.databinding.ActivityReminderBinding
 import hr.medick.fragments.reminder.MedicationNameFragment
@@ -42,17 +45,16 @@ class ReminderActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener(
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.podsjetnikList ->
-                        return@OnNavigationItemSelectedListener true
-                    R.id.vitaliList ->
-                        openVitaliActivity(listOfPodsjetniks)
+//                    R.id.podsjetnikList ->
+//                        return@OnNavigationItemSelectedListener true
+//                    R.id.vitaliList ->
+//                        openVitaliActivity(listOfPodsjetniks)
                 }
                 false
             })
 
         println("Treci$listOfPodsjetniks")
         setUpListView(listView, listOfPodsjetniks)
-
     }
 
     private fun openVitaliActivity(listOfPodsjetniks: List<Podsjetnik>) {

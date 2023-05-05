@@ -54,7 +54,7 @@ class NewReminderActivity : AppCompatActivity() {
 
         val intentReminderActivity = Intent(this, ReminderActivity::class.java)
 
-        podsjetnikList = intent.getParcelableArrayListExtra("PodsjetnikList")!!
+        podsjetnikList = HostActivity.listOfPodsjetniks//intent.getParcelableArrayListExtra("PodsjetnikList")!!
 
 
 

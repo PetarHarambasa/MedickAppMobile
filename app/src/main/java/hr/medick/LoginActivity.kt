@@ -40,12 +40,6 @@ class LoginActivity : AppCompatActivity() {
             val email = binding.emailEditText.text
             val lozinka = binding.lozinkaEditText.text
 
-            // ip of device that is vrtiti backend
-            // žično ipadesa: 192.168.0.126 žično ne radi
-            // bežično ipadrsa: 192.168.1.3 radi ko mašina
-            // ipadrsa za emulator: 10.0.2.2
-            // i guess dok publishamo backend na neki server stavljamo ip od servera
-            // val url = "http://192.168.1.3:8080/mobileRegister" ili val url = "{ngrok link}/mobileRegister"
             val urlMobileLogin = "http://$IP_ADDRESS:8080/mobileLogin"
 
             if (email.isEmpty() || lozinka.isEmpty()) {
@@ -66,7 +60,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun confirmLogin(url: String, email: String, lozinka: String) {
 
-        val intentReminderActivity = Intent(this, ReminderActivity::class.java)
+        val hostIntent = Intent(this, HostActivity::class.java)
 
         val client = OkHttpClient()
 
@@ -89,8 +83,9 @@ class LoginActivity : AppCompatActivity() {
                                 gson.fromJson(responseBody!!.string(), Osoba::class.java)
                             println(osoba)
                             if (!osoba?.email.isNullOrBlank()) {
-                                currentOsoba = osoba
-                                openReminderActivity(intentReminderActivity)
+                                hostIntent.putExtra("OsobaPacijent", osoba)
+                                //openReminderActivity(intentReminderActivity)
+                                startActivity(hostIntent)
                             }
                         }
                         println(response)
@@ -104,68 +99,25 @@ class LoginActivity : AppCompatActivity() {
         loginThread.start()
     }
 
-    @SuppressLint("SuspiciousIndentation")
-    private fun loadRemindersIntoList(
-        url: String,
-        osoba: Osoba,
-        intentReminderActivity: Intent,
-    ) {
+//    @SuppressLint("SuspiciousIndentation")
 
-        val client = OkHttpClient()
 
-        val json = Gson().toJson(osoba)
-        println(json)
-        val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), json)
-
-        val request = Request.Builder()
-            .url(url)
-            .post(requestBody)
-            .build()
-
-            try {
-                // Your network activity
-                val result = client.newCall(request).enqueue(object : Callback {
-                    override fun onFailure(call: Call, e: IOException) {
-                        println(e)
-                    }
-
-                    override fun onResponse(call: Call, response: Response) {
-                        if (response.isSuccessful) {
-                            val gson = Gson()
-                            val responseBody = client.newCall(request).execute().body
-
-                            val type: Type = object : TypeToken<List<Podsjetnik?>?>() {}.type
-                            podsjetnikList = gson.fromJson(responseBody!!.string(), type)
-                            println("DrugiPustlIst$podsjetnikList")
-                            addPodsjtenikListToIntentExtra(intentReminderActivity)
-                        }
-                        println(response)
-                    }
-
-                })
-                println(result)
-            } catch (e: java.lang.Exception) {
-                e.printStackTrace()
-            }
-    }
-
-    private fun addPodsjtenikListToIntentExtra(intentReminderActivity: Intent) {
-        intentReminderActivity.putExtra("PodsjetnikList", ArrayList(podsjetnikList))
-        println("Curent osoba:$currentOsoba")
-
-        startActivity(intentReminderActivity)
-    }
+//    private fun addPodsjtenikListToIntentExtra(intentReminderActivity: Intent) {
+//        intentReminderActivity.putExtra("PodsjetnikList", ArrayList(podsjetnikList))
+//        println("Curent osoba:$currentOsoba")
+//
+//        startActivity(intentReminderActivity)
+//    }
 
     private fun openRegisterActivity() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
 
-    private fun openReminderActivity(intentReminderActivity: Intent) {
-        val urlMobileReminders = "http://${IP_ADDRESS}:8080/mobileReminders"
-        loadRemindersIntoList(urlMobileReminders, currentOsoba!!, intentReminderActivity)
-
-        intentReminderActivity.putExtra("OsobaPacijent", currentOsoba)
-        println("Curent osoba:$currentOsoba")
-    }
+//    private fun openReminderActivity(intentReminderActivity: Intent) {
+//        val urlMobileReminders = "http://${IP_ADDRESS}:8080/mobileReminders"
+//        //loadRemindersIntoList(urlMobileReminders, currentOsoba!!, intentReminderActivity)
+//
+//        println("Curent osoba:$currentOsoba")
+//    }
 }

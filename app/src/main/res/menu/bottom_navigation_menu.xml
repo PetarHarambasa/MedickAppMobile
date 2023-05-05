@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/podsjetnikList"
+        android:id="@+id/RemindersFragment"
         android:icon="@drawable/reminders"
-        android:title="Podsjetnici" />
+        android:title="@string/reminders" />
 
     <item
-        android:id="@+id/vitaliList"
+        android:id="@+id/VitalsFragment"
         android:icon="@drawable/vitals"
-        android:title="Vitali" />
+        android:title="@string/vitals" />
 </menu>

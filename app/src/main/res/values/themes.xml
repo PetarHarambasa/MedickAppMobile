@@ -14,4 +14,13 @@
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/black</item>
     </style>
+
+    <style name="Theme.MedickAppMobile.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.MedickAppMobile.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MedickAppMobile.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

@@ -37,10 +37,10 @@ class VitalsActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener(
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.podsjetnikList ->
-                        openReminderActivity(intentReminder)
-                    R.id.vitaliList ->
-                        return@OnNavigationItemSelectedListener true
+//                    R.id.podsjetnikList ->
+//                        openReminderActivity(intentReminder)
+//                    R.id.vitaliList ->
+//                        return@OnNavigationItemSelectedListener true
                 }
                 false
             })

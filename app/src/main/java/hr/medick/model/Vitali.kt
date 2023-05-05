@@ -10,5 +10,5 @@ data class Vitali(
     val pacijent: Pacijent? = null,
     val glukozaukrvi: String? = null,
     val krvnitlak: String? = null,
-    val date: Date? = null
+    val datummjerenja: Date? = null
 ) : Parcelable
