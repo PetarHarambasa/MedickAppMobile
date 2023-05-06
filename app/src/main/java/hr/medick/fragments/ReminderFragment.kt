@@ -25,7 +25,6 @@ class ReminderFragment : Fragment() {
         binding = FragmentReminderBinding.inflate(inflater, container, false)
         iniComponents()
 
-
         return binding.root
     }
 

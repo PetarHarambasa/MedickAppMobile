@@ -4,6 +4,7 @@ package hr.medick
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
@@ -12,6 +13,7 @@ import hr.medick.databinding.ActivityLoginBinding
 import hr.medick.model.Osoba
 import hr.medick.model.Podsjetnik
 import hr.medick.properties.UrlProperties.IP_ADDRESS
+import hr.medick.session.Session
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
@@ -21,14 +23,24 @@ import java.lang.reflect.Type
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private var loginThread = Thread()
-    var currentOsoba: Osoba? = null
+    private lateinit var session: Session
+    private lateinit var email: EditText
+    private lateinit var password: EditText
 
+    private var loginThread = Thread()
+    val urlMobileLogin = "http://$IP_ADDRESS:8080/mobileLogin"
+    var currentOsoba: Osoba? = null
     var podsjetnikList: List<Podsjetnik> = ArrayList()
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        checkLogin()
+        initCmponents()
+    }
+
+    private fun initCmponents() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -37,19 +49,30 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.loginButton.setOnClickListener {
-            val email = binding.emailEditText.text
-            val lozinka = binding.lozinkaEditText.text
+            email = binding.emailEditText
+            password = binding.lozinkaEditText
 
-            val urlMobileLogin = "http://$IP_ADDRESS:8080/mobileLogin"
+            validateLogin()
+        }
+    }
 
-            if (email.isEmpty() || lozinka.isEmpty()) {
-                Toast.makeText(this, "Molim, popunite sva polja", Toast.LENGTH_SHORT).show()
-            } else if (!email.contains("@")) {
-                Toast.makeText(this, "Molim, upisite ispravan email", Toast.LENGTH_SHORT).show()
-            } else {
-                confirmLogin(urlMobileLogin, email.toString(), lozinka.toString())
-                clearInputs()
-            }
+    private fun validateLogin() {
+        if (email.text.isEmpty() || password.text.isEmpty()) {
+            Toast.makeText(this, "Molim, popunite sva polja", Toast.LENGTH_SHORT).show()
+        } else if (!email.text.contains("@")) {
+            Toast.makeText(this, "Molim, upisite ispravan email", Toast.LENGTH_SHORT).show()
+        } else {
+            confirmLogin(urlMobileLogin, email.text.toString(), password.text.toString())
+            clearInputs()
+        }
+    }
+
+    private fun checkLogin() {
+        session = Session(this)
+
+        if (session.isLoggedIn()){
+            startActivity(Intent(this, HostActivity::class.java))
+            finish()
         }
     }
 
@@ -85,7 +108,9 @@ class LoginActivity : AppCompatActivity() {
                             if (!osoba?.email.isNullOrBlank()) {
                                 hostIntent.putExtra("OsobaPacijent", osoba)
                                 //openReminderActivity(intentReminderActivity)
+                                session.setUser(osoba!!)
                                 startActivity(hostIntent)
+                                finish()
                             }
                         }
                         println(response)

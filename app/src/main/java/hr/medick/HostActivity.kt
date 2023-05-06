@@ -15,6 +15,7 @@ import hr.medick.model.Osoba
 import hr.medick.model.Podsjetnik
 import hr.medick.model.Vitali
 import hr.medick.properties.UrlProperties
+import hr.medick.session.Session
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
@@ -28,6 +29,7 @@ class HostActivity : AppCompatActivity() {
     companion object{
         lateinit var listOfPodsjetniks: List<Podsjetnik>
         lateinit var listOfVitals: List<Vitali>
+        lateinit var session: Session
         lateinit var osoba: Osoba
     }
 
@@ -39,7 +41,9 @@ class HostActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fm: FragmentManager = supportFragmentManager
-        osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
+//        osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
+        session = Session(this)
+        osoba = session.getOsoba()
         initNavigation()
 
         loadRemindersIntoList("http://${UrlProperties.IP_ADDRESS}:8080/mobileReminders", osoba)

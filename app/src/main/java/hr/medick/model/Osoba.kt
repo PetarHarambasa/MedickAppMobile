@@ -1,8 +1,11 @@
 package hr.medick.model
 
 data class Osoba (
-    val id: Long? = null,
-    val ime: String? = null, val prezime: String? = null,
-    val email: String? = null, val telefon: String? = null,
-    val adresaStanovanja: String? = null, val lozinka: String? = null
+    var id: Long? = null,
+    var ime: String? = null,
+    var prezime: String? = null,
+    var email: String? = null,
+    var telefon: String? = null,
+    var adresaStanovanja: String? = null,
+    var lozinka: String? = null
 ) : java.io.Serializable

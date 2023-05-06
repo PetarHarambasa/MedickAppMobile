@@ -9,4 +9,7 @@
         android:id="@+id/VitalsFragment"
         android:icon="@drawable/vitals"
         android:title="@string/vitals" />
+    <item
+        android:id="@+id/ProfileFragment"
+        android:title="@string/profil" />
 </menu>
