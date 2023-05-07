@@ -41,7 +41,7 @@ class HostActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val fm: FragmentManager = supportFragmentManager
-//        osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
+        //osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
         session = Session(this)
         osoba = session.getOsoba()
         initNavigation()

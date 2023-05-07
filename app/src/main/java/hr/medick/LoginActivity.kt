@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
     private fun validateLogin() {
         if (email.text.isEmpty() || password.text.isEmpty()) {
             Toast.makeText(this, "Molim, popunite sva polja", Toast.LENGTH_SHORT).show()
-        } else if (!email.text.contains("@")) {
+        } else if (!email.text.contains("@")) { //Patterns.EMAIL_ADDRESS.matcher(email).matches()
             Toast.makeText(this, "Molim, upisite ispravan email", Toast.LENGTH_SHORT).show()
         } else {
             confirmLogin(urlMobileLogin, email.text.toString(), password.text.toString())

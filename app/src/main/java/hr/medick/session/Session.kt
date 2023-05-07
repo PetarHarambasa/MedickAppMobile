@@ -6,6 +6,7 @@ import hr.medick.model.Osoba
 
 class Session(context: Context) {
     val PREFS_KEY = "prefs"
+    val ID_KEY = "id"
     val FIRSTNAME_KEY = "ime"
     val LASTNAME_KEY = "prezime"
     val EMAIL_KEY = "email"
@@ -30,6 +31,7 @@ class Session(context: Context) {
 
     fun setUser(osoba: Osoba) {
         editor.apply {
+            putLong(ID_KEY, osoba.id!!)
             putString(FIRSTNAME_KEY, osoba.ime)
             putString(LASTNAME_KEY, osoba.prezime)
             putString(EMAIL_KEY, osoba.email)
@@ -44,6 +46,7 @@ class Session(context: Context) {
     fun getOsoba(): Osoba{
         var osoba = Osoba()
         if (isLoggedIn()) {
+            osoba.id = prefs.getLong(ID_KEY, 0)
             osoba.ime = prefs.getString(FIRSTNAME_KEY, "")
             osoba.prezime = prefs.getString(LASTNAME_KEY, "")
             osoba.email =  prefs.getString(EMAIL_KEY, "")
