@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserProfileActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="@dimen/marginPodsjetnik">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/userProfile"
+            android:textSize="@dimen/registerTextSize"
+            android:textStyle="bold"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <EditText
+            android:id="@+id/imeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/ime"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <EditText
+            android:id="@+id/prezimeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/prezime"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <EditText
+            android:id="@+id/telefonEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/telefon"
+            android:inputType="phone"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <EditText
+            android:id="@+id/adresaStanovanjaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/adrsa_stanovanja"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <EditText
+            android:id="@+id/lozinkaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lozinka"
+            android:inputType="textPassword"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"/>
+
+        <Button
+            android:id="@+id/saveUserProfile"
+            android:backgroundTint="@color/lightRed"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/saveUserProfile"
+            android:textAllCaps="false"/>
+
+        <TextView
+            android:textSize="20sp"
+            android:id="@+id/responseMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="165dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bootomnNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navigation_height"
+
+        app:menu="@menu/bottom_navigation_menu" />
+
+    </LinearLayout>
+</LinearLayout>

@@ -39,4 +39,6 @@
     <string name="krvni_tlak">Krvni tlak</string>
     <string name="krvni_tlak_iznos_hint">50 mmHg</string>
     <string name="dodaj_nove_vitale">Dodaj nove vitale</string>
+    <string name="userProfile">Korisnički Profil</string>
+    <string name="saveUserProfile">Spremi promjene</string>
 </resources>

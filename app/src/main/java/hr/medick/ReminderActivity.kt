@@ -47,13 +47,24 @@ class ReminderActivity : AppCompatActivity() {
                         return@OnNavigationItemSelectedListener true
                     R.id.vitaliList ->
                         openVitaliActivity(listOfPodsjetniks)
+                    R.id.userProfile ->
+                        openUserProfileActivity(listOfPodsjetniks)
                 }
                 false
             })
 
-        println("Treci$listOfPodsjetniks")
         setUpListView(listView, listOfPodsjetniks)
 
+    }
+
+    private fun openUserProfileActivity(listOfPodsjetniks: List<Podsjetnik>) {
+        val osoba: Osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
+        val intentUserProfile = Intent(this, UserProfileActivity::class.java)
+
+        intentUserProfile.putExtra("OsobaPacijent", osoba)
+        intentUserProfile.putExtra("PodsjetnikList", ArrayList(listOfPodsjetniks))
+
+        startActivity(intentUserProfile)
     }
 
     private fun openVitaliActivity(listOfPodsjetniks: List<Podsjetnik>) {
