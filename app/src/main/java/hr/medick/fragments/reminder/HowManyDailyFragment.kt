@@ -16,7 +16,7 @@ import hr.medick.R
 import hr.medick.databinding.FragmentHowManyDailyBinding
 import java.util.*
 
-class HowManyDailyFragment : Fragment() { // TODO: sakri nepotrebne stvari iz layouta i nastavi s ostalim fragmentima
+class HowManyDailyFragment : Fragment() {
 
     private lateinit var binding: FragmentHowManyDailyBinding
     private lateinit var dailyBtn: Button

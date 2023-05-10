@@ -42,20 +42,20 @@ class DoseFragment : Fragment(){
             if (validateInput()) {
 //                Terapija.getInstance().lijek?.naziv = name.text.trim().toString()
 
-                parentFragmentManager.commit {
-                    replace<InteravalOfConsumptionFragment>(R.id.fragmentContianer)
-                    setReorderingAllowed(true)
-                    addToBackStack(null)
-                }
+//                parentFragmentManager.commit {
+//                    replace<InteravalOfConsumptionFragment>(R.id.fragmentContianer)
+//                    setReorderingAllowed(true)
+//                    addToBackStack(null)
+//                }
             }
 
         }
         backBtn.setOnClickListener {
-                parentFragmentManager.commit {
-                    replace<MedicationNameFragment>(R.id.fragmentContianer)
-                    setReorderingAllowed(true)
-                    addToBackStack(null)
-                }
+//                parentFragmentManager.commit {
+//                    replace<MedicationNameFragment>(R.id.fragmentContianer)
+//                    setReorderingAllowed(true)
+//                    addToBackStack(null)
+//                }
         }
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter.createFromResource(

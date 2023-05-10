@@ -37,11 +37,11 @@ class MedicationNameFragment : Fragment() {
             if (validateInput()) {
                 Terapija.getInstance().lijek?.naziv = name.text.trim().toString()
 
-                parentFragmentManager.commit {
-                    replace<DoseFragment>(R.id.fragmentContianer)
-                    setReorderingAllowed(true)
-                    addToBackStack(null)
-                }
+//                parentFragmentManager.commit {
+//                    replace<DoseFragment>(R.id.fragmentContianer)
+//                    setReorderingAllowed(true)
+//                    addToBackStack(null)
+//                }
             }
         }
     }

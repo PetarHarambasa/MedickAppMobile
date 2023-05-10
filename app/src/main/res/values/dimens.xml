@@ -5,6 +5,7 @@
     <dimen name="registerFormMargin">50dp</dimen>
     <dimen name="registerFormMarginHorizontal">35dp</dimen>
     <dimen name="buttonTextLoginHereSize">14sp</dimen>
+    <dimen name="paddingScrollViewPodsjetnik">20dp</dimen>
     <dimen name="marginPodsjetnik">20dp</dimen>
     <dimen name="textSizeForNewReminderLabels">22sp</dimen>
     <dimen name="marginBottomDatumUzimanjaLijeka">20dp</dimen>

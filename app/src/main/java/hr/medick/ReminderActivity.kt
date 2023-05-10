@@ -30,8 +30,8 @@ class ReminderActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityReminderBinding.inflate(layoutInflater)
 
-        val listOfPodsjetniks: List<Podsjetnik> =
-            intent.getParcelableArrayListExtra("PodsjetnikList")!!
+        val listOfPodsjetniks: List<Podsjetnik> = HostActivity.listOfPodsjetniks
+            //intent.getParcelableArrayListExtra("PodsjetnikList")!!
 
         val listView: ListView = binding.lvPodsjetnici
         setContentView(binding.root)
