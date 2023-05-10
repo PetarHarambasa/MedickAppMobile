@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.widget.addTextChangedListener
 import com.google.gson.Gson
 import hr.medick.HostActivity
 import hr.medick.LoginActivity
@@ -16,6 +17,7 @@ import hr.medick.NewReminderActivity
 import hr.medick.R
 import hr.medick.databinding.FragmentProfileBinding
 import hr.medick.databinding.FragmentReminderBinding
+import hr.medick.dto.ProfileDto
 import hr.medick.model.Osoba
 import hr.medick.model.Podsjetnik
 import hr.medick.model.Vitali
@@ -30,7 +32,9 @@ class ProfileFragment : Fragment() {
     private lateinit var logoutBtn: Button
     private lateinit var listOfPodsjetniks: List<Podsjetnik>
     private lateinit var osoba: Osoba
+//    private lateinit var email: String
     var podsjetnikList: List<Podsjetnik> = ArrayList()
+    var emailChanged: Boolean = false
     private var isEditSuccessful: Boolean = true
 
     override fun onCreateView(
@@ -47,6 +51,7 @@ class ProfileFragment : Fragment() {
     private fun initVariables() {
         listOfPodsjetniks = HostActivity.listOfPodsjetniks
         osoba = HostActivity.osoba
+//        email = binding.emailEditText.text.toString()
     }
 
     private fun initComponents() {
@@ -57,6 +62,10 @@ class ProfileFragment : Fragment() {
         binding.emailEditText.setText(osoba.email)
         binding.telefonEditText.setText(osoba.telefon)
         binding.adresaStanovanjaEditText.setText(osoba.adresaStanovanja)
+
+        binding.emailEditText.addTextChangedListener {
+            emailChanged = true
+        }
 
         binding.saveUserProfile.setOnClickListener {
             saveProfileChanges()
@@ -73,7 +82,7 @@ class ProfileFragment : Fragment() {
     private fun saveProfileChanges() {
         val ime = binding.imeEditText.text
         val prezime = binding.prezimeEditText.text
-        val email = binding.emailEditText.text
+        val email = binding.emailEditText.text.toString()
         val telefon = binding.telefonEditText.text
         val adresaStanovanja = binding.adresaStanovanjaEditText.text
         val lozinka = binding.lozinkaEditText.text
@@ -83,7 +92,7 @@ class ProfileFragment : Fragment() {
             osoba.id,
             ime.toString(),
             prezime.toString(),
-            email.toString(),
+            email,
             telefon.toString(),
             adresaStanovanja.toString(),
             lozinka.toString()
@@ -95,7 +104,8 @@ class ProfileFragment : Fragment() {
         } else if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             Toast.makeText(context, "Molim, upisite ispravan email", Toast.LENGTH_SHORT).show()
         } else {
-            saveData(url, newDataOfOsoba)
+            val pd = ProfileDto(newDataOfOsoba, emailChanged)
+            saveData(url, pd)
             if (isEditSuccessful) {
                 Toast.makeText(
                     context, "Spremljene promjene, molim ponovno se" +
@@ -107,10 +117,10 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun saveData(url: String, newDataOfOsoba: Osoba) {
+    private fun saveData(url: String, profileDto: ProfileDto) {
         val client = OkHttpClient()
 
-        val json = Gson().toJson(newDataOfOsoba)
+        val json = Gson().toJson(profileDto)
         val requestBody = RequestBody.create("application/json".toMediaTypeOrNull(), json)
 
         val request = Request.Builder()
@@ -132,6 +142,7 @@ class ProfileFragment : Fragment() {
                         println(stringCheck)
                         isEditSuccessful = false
                         println(response.message)
+                        binding.lozinkaEditText.setText("")
                     } else {
                         println(stringCheck)
                         isEditSuccessful = true

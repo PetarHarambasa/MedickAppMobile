@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import hr.medick.HostActivity
+import hr.medick.LoginActivity
 import hr.medick.NewReminderActivity
 import hr.medick.databinding.FragmentReminderBinding
 import hr.medick.model.Podsjetnik
@@ -32,6 +33,12 @@ class ReminderFragment : Fragment() {
         binding.fabNew.setOnClickListener {
             openNewReminderActivity(HostActivity.listOfPodsjetniks)
         }
+//        binding.logoutBtn.setOnClickListener{
+//            HostActivity.session.logout()
+//
+//            startActivity(Intent(activity, LoginActivity::class.java))
+//            activity?.finish()
+//        }
     }
 
     private fun openNewReminderActivity(listOfPodsjetniks: List<Podsjetnik>) {
