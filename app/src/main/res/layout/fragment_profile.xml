@@ -1,15 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.ProfileFragment">
 
-    <Button
-        android:id="@+id/logoutBtn"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="10dp"
-        android:text="Logout"/>
+        android:layout_margin="@dimen/marginPodsjetnik"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"
+            android:text="@string/userProfile"
+            android:textSize="@dimen/registerTextSize"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/imeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"
+            android:hint="@string/ime" />
+
+        <EditText
+            android:id="@+id/prezimeEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"
+            android:hint="@string/prezime" />
+
+        <EditText
+            android:id="@+id/emailEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"
+            android:hint="@string/email"
+            android:inputType="textEmailAddress" />
+
+        <EditText
+            android:id="@+id/telefonEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"
+            android:hint="@string/telefon"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/adresaStanovanjaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"
+            android:hint="@string/adrsa_stanovanja" />
+
+        <EditText
+            android:id="@+id/lozinkaEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/registerInputTextMarginBottomSize"
+            android:hint="@string/lozinka"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/saveUserProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/lightRed"
+            android:text="@string/saveUserProfile"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+<!--        <TextView-->
+<!--            android:id="@+id/responseMessage"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_marginBottom="165dp"-->
+<!--            android:textSize="20sp" />-->
+
+        <Button
+            android:id="@+id/logoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:paddingHorizontal="10dp"
+            android:text="Logout" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -74,4 +74,5 @@
     <string name="userProfile">Korisnički Profil</string>
     <string name="saveUserProfile">Spremi promjene</string>
     <string name="profil">Profil</string>
+    <string name="profile">Korisnički račun</string>
 </resources>

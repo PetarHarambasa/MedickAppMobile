@@ -44,17 +44,17 @@ class UserProfileActivity : AppCompatActivity() {
         bottomNavigationView.setOnNavigationItemSelectedListener(
             BottomNavigationView.OnNavigationItemSelectedListener { item ->
                 when (item.itemId) {
-                    R.id.podsjetnikList ->
-                        openReminderActivity(osoba, intentReminder)
-                    R.id.vitaliList ->
-                        openVitaliActivity(osoba, listOfPodsjetniks)
-                    R.id.userProfile ->
-                        return@OnNavigationItemSelectedListener true
+//                    R.id.podsjetnikList ->
+//                        openReminderActivity(osoba, intentReminder)
+//                    R.id.vitaliList ->
+//                        openVitaliActivity(osoba, listOfPodsjetniks)
+//                    R.id.userProfile ->
+//                        return@OnNavigationItemSelectedListener true
                 }
                 false
             })
 
-        bottomNavigationView.selectedItemId = R.id.userProfile
+
 
 
         binding.imeEditText.setText(osoba.ime)
