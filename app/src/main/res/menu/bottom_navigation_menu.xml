@@ -9,4 +9,8 @@
         android:id="@+id/VitalsFragment"
         android:icon="@drawable/vitals"
         android:title="@string/vitals" />
+    <item
+        android:id="@+id/userProfile"
+        android:icon="@drawable/user_icon"
+        android:title="Korisnički račun" />
 </menu>

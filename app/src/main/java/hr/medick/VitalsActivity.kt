@@ -28,6 +28,9 @@ class VitalsActivity : AppCompatActivity() {
         val listView: ListView = binding.lvVitali
         setContentView(binding.root)
 
+        val listOfPodsjetniks: List<Podsjetnik> =
+            intent.getParcelableArrayListExtra("PodsjetnikList")!!
+
         binding.fabNew.setOnClickListener {
             openNewVitalsActivity(listOfVitals)
         }
@@ -41,11 +44,25 @@ class VitalsActivity : AppCompatActivity() {
 //                        openReminderActivity(intentReminder)
 //                    R.id.vitaliList ->
 //                        return@OnNavigationItemSelectedListener true
+//                    R.id.userProfile ->
+//                        openUserProfileActivity(listOfPodsjetniks)
                 }
                 false
             })
 
+        //bottomNavigationView.selectedItemId = R.id.vitaliList
+
         setUpListView(listView, listOfVitals)
+    }
+
+    private fun openUserProfileActivity(listOfPodsjetniks: List<Podsjetnik>) {
+        val osoba: Osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
+        val intentUserProfile = Intent(this, UserProfileActivity::class.java)
+
+        intentUserProfile.putExtra("OsobaPacijent", osoba)
+        intentUserProfile.putExtra("PodsjetnikList", ArrayList(listOfPodsjetniks))
+
+        startActivity(intentUserProfile)
     }
 
     private fun setUpListView(listView: ListView, listOfVitals: List<Vitali>) {

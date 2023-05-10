@@ -71,4 +71,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="reminders">Podsjetnici</string>
     <string name="vitals">Vitali</string>
+    <string name="userProfile">Korisnički Profil</string>
+    <string name="saveUserProfile">Spremi promjene</string>
 </resources>
