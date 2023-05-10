@@ -25,7 +25,7 @@ class UserProfileActivity : AppCompatActivity() {
 
     var podsjetnikList: List<Podsjetnik> = ArrayList()
 
-    private var isRegistriran: Boolean = true
+    private var isEditSuccessful: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +71,7 @@ class UserProfileActivity : AppCompatActivity() {
             val adresaStanovanja = binding.adresaStanovanjaEditText.text
             val lozinka = binding.lozinkaEditText.text
 
-            val url = "http://${UrlProperties.IP_ADDRESS}:8080/mobileRegister"
+            val url = "http://${UrlProperties.IP_ADDRESS}:8080/mobileEditPacijent"
             val newDataOfOsoba = Osoba(
                 osoba.id,
                 ime.toString(),
@@ -89,7 +89,7 @@ class UserProfileActivity : AppCompatActivity() {
                 Toast.makeText(this, "Molim, upisite ispravan email", Toast.LENGTH_SHORT).show()
             } else {
                 saveData(url, newDataOfOsoba)
-                if (isRegistriran) {
+                if (isEditSuccessful) {
                     Toast.makeText(
                         this, "Spremljene promjene, molim ponovno se" +
                                 " ulogirajte kako bi se promjene primjenile ", Toast.LENGTH_LONG
@@ -124,13 +124,11 @@ class UserProfileActivity : AppCompatActivity() {
                     val stringCheck = responseBody?.string()
                     if (response.code == 200) {
                         println(stringCheck)
-                        isRegistriran = false
-                        println("Registracija uspješna!")
+                        isEditSuccessful = false
                         println(response.message)
                     } else {
                         println(stringCheck)
-                        isRegistriran = true
-                        println("Registracija neuspješna!")
+                        isEditSuccessful = true
                         println(response.message)
                     }
                 }
