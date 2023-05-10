@@ -73,4 +73,5 @@
     <string name="vitals">Vitali</string>
     <string name="userProfile">Korisnički Profil</string>
     <string name="saveUserProfile">Spremi promjene</string>
+    <string name="profil">Profil</string>
 </resources>

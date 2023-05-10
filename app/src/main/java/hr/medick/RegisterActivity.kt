@@ -35,12 +35,7 @@ class RegisterActivity : AppCompatActivity() {
             val ponovljenaLozinka = binding.ponovnoLozinkaEditText.text
 
 
-            // ip of device that is vrtiti backend
-            // žično ipadesa: 192.168.0.126 žično ne radi
-            // bežično ipadrsa: 192.168.1.3 radi ko mašina
-            // ipadrsa za emulator: 10.0.2.2
-            // i guess dok publishamo backend na neki server stavljamo ip od servera
-            // val url = "http://192.168.1.3:8080/mobileRegister" ili val url = "{ngrok link}/mobileRegister"
+
             val url = "http://$IP_ADDRESS:8080/mobileRegister"
             val osoba = Osoba(
                 null,
@@ -55,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
             // Validate user input
             if (ime.isEmpty() || prezime.isEmpty() || email.isEmpty() || telefon.isEmpty() || adresaStanovanja.isEmpty() || lozinka.isEmpty() || ponovljenaLozinka.isEmpty()) {
                 Toast.makeText(this, "Molim, popunite sva polja", Toast.LENGTH_SHORT).show()
-            } else if (!email.contains("@")) {
+            } else if (!email.contains("@")) {//Patterns.EMAIL_ADDRESS.matcher(email).matches()
                 Toast.makeText(this, "Molim, upisite ispravan email", Toast.LENGTH_SHORT).show()
             } else if (lozinka.trim() != ponovljenaLozinka.trim()) {
                 Toast.makeText(this, "Molim, potvrdite lozinku", Toast.LENGTH_SHORT).show()
