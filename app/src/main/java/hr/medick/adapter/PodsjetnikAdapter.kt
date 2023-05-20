@@ -1,21 +1,17 @@
 package hr.medick.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import hr.medick.R
-import hr.medick.ReminderActivity
 import hr.medick.model.Podsjetnik
 
-class PodsjetnikAdapter(private val context: ReminderActivity,
-                        private val dataSource: List<Podsjetnik>) : BaseAdapter() {
-
-    private val inflater: LayoutInflater
-            = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+class PodsjetnikAdapter(
+    private val dataSource: List<Podsjetnik>
+) : BaseAdapter() {
 
     override fun getCount(): Int {
         return dataSource.size
@@ -32,20 +28,25 @@ class PodsjetnikAdapter(private val context: ReminderActivity,
     @SuppressLint("SetTextI18n", "ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        val rowView = inflater.inflate(R.layout.list_item_podsjetnik, parent, false)
+        val rowView = LayoutInflater.from(parent?.context)
+            .inflate(R.layout.list_item_podsjetnik, parent, false)
 
         val lijekNazivInList = rowView.findViewById<TextView>(R.id.imeLijekaTextViewInListView)
         val lijekDozaInList = rowView.findViewById<TextView>(R.id.dozaLijekaTextViewInListView)
         val brojTabletaInList = rowView.findViewById<TextView>(R.id.brojTabletaTextViewInListView)
-        val brojPutaDnevnoInList = rowView.findViewById<TextView>(R.id.brojPutaDnevnoTextViewInListView)
-        val brojSvakihSatiInList = rowView.findViewById<TextView>(R.id.brojSvakihSatiTextViewInListView)
+        val brojPutaDnevnoInList =
+            rowView.findViewById<TextView>(R.id.brojPutaDnevnoTextViewInListView)
+        val brojSvakihSatiInList =
+            rowView.findViewById<TextView>(R.id.brojSvakihSatiTextViewInListView)
 
         val podsjetnik = getItem(position) as Podsjetnik
-        lijekNazivInList.text = podsjetnik.terapija?.lijek?.naziv+","
+        lijekNazivInList.text = podsjetnik.terapija?.lijek?.naziv + ","
         lijekDozaInList.text = podsjetnik.terapija?.dozalijeka
-        brojTabletaInList.text = "Preostalo "+podsjetnik.terapija?.kolicinatableta.toString()+" tableta, "
-        brojSvakihSatiInList.text = "svakih "+podsjetnik.terapija?.ponavljanja.toString()+"h"
-        brojPutaDnevnoInList.text = podsjetnik.terapija?.kolicinadnevno.toString()+" puta dnevno, "
+        brojTabletaInList.text =
+            "Preostalo " + podsjetnik.terapija?.kolicinatableta.toString() + " tableta, "
+        brojSvakihSatiInList.text = "svakih " + podsjetnik.terapija?.ponavljanja.toString() + "h"
+        brojPutaDnevnoInList.text =
+            podsjetnik.terapija?.kolicinadnevno.toString() + " puta dnevno, "
 
         return rowView
 

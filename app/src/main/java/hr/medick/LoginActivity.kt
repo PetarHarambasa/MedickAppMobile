@@ -8,17 +8,12 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 import hr.medick.databinding.ActivityLoginBinding
 import hr.medick.model.Osoba
-import hr.medick.model.Podsjetnik
 import hr.medick.properties.UrlProperties.IP_ADDRESS
 import hr.medick.session.Session
 import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
-import java.io.Serializable
-import java.lang.reflect.Type
 
 
 class LoginActivity : AppCompatActivity() {
@@ -29,8 +24,6 @@ class LoginActivity : AppCompatActivity() {
 
     private var loginThread = Thread()
     val urlMobileLogin = "http://$IP_ADDRESS:8080/mobileLogin"
-    var currentOsoba: Osoba? = null
-    var podsjetnikList: List<Podsjetnik> = ArrayList()
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,7 +63,7 @@ class LoginActivity : AppCompatActivity() {
     private fun checkLogin() {
         session = Session(this)
 
-        if (session.isLoggedIn()){
+        if (session.isLoggedIn()) {
             startActivity(Intent(this, HostActivity::class.java))
             finish()
         }
@@ -107,7 +100,6 @@ class LoginActivity : AppCompatActivity() {
                             println(osoba)
                             if (!osoba?.email.isNullOrBlank()) {
                                 hostIntent.putExtra("OsobaPacijent", osoba)
-                                //openReminderActivity(intentReminderActivity)
                                 session.setUser(osoba!!)
                                 startActivity(hostIntent)
                                 finish()
@@ -124,25 +116,8 @@ class LoginActivity : AppCompatActivity() {
         loginThread.start()
     }
 
-//    @SuppressLint("SuspiciousIndentation")
-
-
-//    private fun addPodsjtenikListToIntentExtra(intentReminderActivity: Intent) {
-//        intentReminderActivity.putExtra("PodsjetnikList", ArrayList(podsjetnikList))
-//        println("Curent osoba:$currentOsoba")
-//
-//        startActivity(intentReminderActivity)
-//    }
-
     private fun openRegisterActivity() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
     }
-
-//    private fun openReminderActivity(intentReminderActivity: Intent) {
-//        val urlMobileReminders = "http://${IP_ADDRESS}:8080/mobileReminders"
-//        //loadRemindersIntoList(urlMobileReminders, currentOsoba!!, intentReminderActivity)
-//
-//        println("Curent osoba:$currentOsoba")
-//    }
 }

@@ -1,8 +1,9 @@
 package hr.medick
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
 import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -10,6 +11,8 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.navigateUp
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import hr.medick.adapter.PodsjetnikAdapter
+import hr.medick.adapter.VitaliAdapter
 import hr.medick.databinding.ActivityHostBinding
 import hr.medick.model.Osoba
 import hr.medick.model.Podsjetnik
@@ -26,35 +29,32 @@ class HostActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHostBinding
 
-    companion object{
-        lateinit var listOfPodsjetniks: List<Podsjetnik>
-        lateinit var listOfVitals: List<Vitali>
+    companion object {
         lateinit var session: Session
         lateinit var osoba: Osoba
+        lateinit var listOfPodsjetniks: MutableList<Podsjetnik>
+        lateinit var listOfVitals: MutableList<Vitali>
+        lateinit var podsjetnikAdapter: PodsjetnikAdapter
+        lateinit var vitalsAdapter: VitaliAdapter
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+        session = Session(this)
+        osoba = session.getOsoba()
+        listOfPodsjetniks = mutableListOf()
+        listOfVitals = mutableListOf()
+        podsjetnikAdapter = PodsjetnikAdapter(listOfPodsjetniks)
+        vitalsAdapter = VitaliAdapter(listOfVitals)
 
+        super.onCreate(savedInstanceState)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
         binding = ActivityHostBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val fm: FragmentManager = supportFragmentManager
-        //osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
-        session = Session(this)
-        osoba = session.getOsoba()
         initNavigation()
 
         loadRemindersIntoList("http://${UrlProperties.IP_ADDRESS}:8080/mobileReminders", osoba)
         loadVitalsIntoList("http://${UrlProperties.IP_ADDRESS}:8080/mobileVitals", osoba)
-
-//        listOfPodsjetniks = intent.getParcelableArrayListExtra("PodsjetnikList")!!
-
-//        binding.fab.setOnClickListener { view ->
-//            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show()
-//        }
     }
 
     private fun initNavigation() {
@@ -68,7 +68,7 @@ class HostActivity : AppCompatActivity() {
                 || super.onSupportNavigateUp()
     }
 
-    private fun loadVitalsIntoList(
+    fun loadVitalsIntoList(
         url: String,
         osoba: Osoba
     ) {
@@ -98,6 +98,7 @@ class HostActivity : AppCompatActivity() {
 
                         val type: Type = object : TypeToken<List<Vitali?>?>() {}.type
                         listOfVitals = gson.fromJson(responseBody!!.string(), type)
+                        vitalsAdapter = VitaliAdapter(listOfVitals)
                     }
                     println(response)
                 }
@@ -109,7 +110,7 @@ class HostActivity : AppCompatActivity() {
         }
     }
 
-    private fun loadRemindersIntoList(
+    fun loadRemindersIntoList(
         url: String,
         osoba: Osoba
     ) {
@@ -139,7 +140,7 @@ class HostActivity : AppCompatActivity() {
 
                         val type: Type = object : TypeToken<List<Podsjetnik?>?>() {}.type
                         listOfPodsjetniks = gson.fromJson(responseBody!!.string(), type)
-                        println("DrugiPustlIst$listOfPodsjetniks")
+                        podsjetnikAdapter = PodsjetnikAdapter(listOfPodsjetniks)
                     }
                     println(response)
                 }
@@ -148,6 +149,15 @@ class HostActivity : AppCompatActivity() {
             println(result)
         } catch (e: java.lang.Exception) {
             e.printStackTrace()
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            loadRemindersIntoList("http://${UrlProperties.IP_ADDRESS}:8080/mobileReminders", osoba)
+        } else if (requestCode == 2 && resultCode == Activity.RESULT_OK) {
+            loadVitalsIntoList("http://${UrlProperties.IP_ADDRESS}:8080/mobileVitals", osoba)
         }
     }
 }

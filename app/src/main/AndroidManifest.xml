@@ -25,13 +25,6 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".UserProfileActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".NewVitalsActivity"
             android:exported="false">
             <meta-data
@@ -39,21 +32,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".VitalsActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".NewReminderActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".ReminderActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

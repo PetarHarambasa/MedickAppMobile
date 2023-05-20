@@ -1,34 +1,25 @@
 package hr.medick
 
 import android.app.DatePickerDialog
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
-import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import hr.medick.HostActivity.Companion.listOfPodsjetniks
+import hr.medick.HostActivity.Companion.osoba
 import hr.medick.databinding.ActivityNewReminderBinding
-import hr.medick.fragments.reminder.MedicationNameFragment
 import hr.medick.model.Osoba
 import hr.medick.model.Podsjetnik
 import hr.medick.properties.UrlProperties
-import hr.medick.properties.UrlProperties.IP_ADDRESS
 import okhttp3.*
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import java.io.IOException
-import java.lang.reflect.Type
 import java.util.*
 
 class NewReminderActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityNewReminderBinding
     private var newReminderThread = Thread()
-
-    var podsjetnikList: List<Podsjetnik> = ArrayList()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,36 +29,9 @@ class NewReminderActivity : AppCompatActivity() {
         initComponents()
         binding.datePickerEditText.inputType = InputType.TYPE_NULL
 
-//       This option is if we want to kill the activity after the last fragment
-//        supportFragmentManager.addOnBackStackChangedListener {
-//            if (supportFragmentManager.backStackEntryCount == 0) {
-//                finish()
-//            }
-//        }
-
-        //opens the 1st fragment
-//        supportFragmentManager.commit {
-//            replace<MedicationNameFragment>(R.id.fragmentContianer)
-//            setReorderingAllowed(true)
-//            addToBackStack(null)
-//        }
-
-        val intentReminderActivity = Intent(this, ReminderActivity::class.java)
-
-        podsjetnikList =
-            HostActivity.listOfPodsjetniks//intent.getParcelableArrayListExtra("PodsjetnikList")!!
     }
 
     private fun initComponents() {
-        val intentReminderActivity = Intent(this, ReminderActivity::class.java)
-        binding.fabBack.setOnClickListener {
-
-            val osobaPacijent: Osoba = intent.getSerializableExtra("OsobaPacijent") as Osoba
-            goBackToReminderActivity(
-                osobaPacijent,
-                intentReminderActivity
-            )
-        }
         binding.datePickerEditText.setOnClickListener {
             showDatePickerDialog()
         }
@@ -93,9 +57,7 @@ class NewReminderActivity : AppCompatActivity() {
             )
         }
         binding.fabBack.setOnClickListener {
-            val osobaPacijent: Osoba = HostActivity.osoba
-
-            goBackToReminderActivity(osobaPacijent, intentReminderActivity)
+            finish()
         }
         binding.datePickerEditText.setOnClickListener {
             showDatePickerDialog()
@@ -137,7 +99,8 @@ class NewReminderActivity : AppCompatActivity() {
         val client = OkHttpClient()
 
 
-        val osobaPacijent: Osoba = HostActivity.osoba//intent.getSerializableExtra("OsobaPacijent") as Osoba
+        val osobaPacijent: Osoba =
+            osoba
 
         println("osobaPacijent$osobaPacijent")
 
@@ -165,8 +128,7 @@ class NewReminderActivity : AppCompatActivity() {
                             val podsjetnik: Podsjetnik? =
                                 gson.fromJson(responseBody!!.string(), Podsjetnik::class.java)
 
-                            println(podsjetnik)
-                            openReminderActivity(osobaPacijent)
+                            reloadRemindersList()
 
                         }
                         println(response)
@@ -180,6 +142,12 @@ class NewReminderActivity : AppCompatActivity() {
         newReminderThread.start()
     }
 
+    private fun reloadRemindersList() {
+        val hostActivity = Intent(baseContext, HostActivity::class.java)
+        hostActivity.action = "ACTION_CALL_FUNCTION"
+        startActivityForResult(hostActivity, 1)
+    }
+
     private fun showDatePickerDialog() {
         val calendar = Calendar.getInstance()
         val year = calendar.get(Calendar.YEAR)
@@ -187,7 +155,7 @@ class NewReminderActivity : AppCompatActivity() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
 
         val datePickerDialog = DatePickerDialog(
-            this, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            this, { view, year, monthOfYear, dayOfMonth ->
                 // Do something with the selected date
                 val selectedDate = "$dayOfMonth/${monthOfYear + 1}/$year"
                 binding.datePickerEditText.setText(selectedDate)
@@ -195,23 +163,5 @@ class NewReminderActivity : AppCompatActivity() {
         )
 
         datePickerDialog.show()
-    }
-
-    private fun goBackToReminderActivity(
-        osobaPacijent: Osoba, intentReminderActivity: Intent
-//        ,
-//        podsjetnikList: List<Podsjetnik>
-    ) {
-        val intent = Intent(this, ReminderActivity::class.java)
-        println("Current osoba$osobaPacijent")
-        intent.putExtra("OsobaPacijent", osobaPacijent)
-        startActivity(intent)
-    }
-
-    private fun openReminderActivity(osobaPacijent: Osoba) {
-        val intent = Intent(this, ReminderActivity::class.java)
-        println("Current osoba$osobaPacijent")
-        intent.putExtra("OsobaPacijent", osobaPacijent)
-        startActivity(intent)
     }
 }

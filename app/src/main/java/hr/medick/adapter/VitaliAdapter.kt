@@ -1,25 +1,19 @@
 package hr.medick.adapter
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
 import hr.medick.R
-import hr.medick.VitalsActivity
 import hr.medick.model.Vitali
 import java.text.SimpleDateFormat
 import java.util.*
 
 class VitaliAdapter(
-    private val context: VitalsActivity,
     private val dataSource: List<Vitali>
 ) : BaseAdapter() {
-
-    private val inflater: LayoutInflater =
-        context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
 
     override fun getCount(): Int {
         return dataSource.size
@@ -36,7 +30,8 @@ class VitaliAdapter(
     @SuppressLint("SetTextI18n", "ViewHolder")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
 
-        val rowView = inflater.inflate(R.layout.list_item_vitali, parent, false)
+        val rowView = LayoutInflater.from(parent?.context)
+            .inflate(R.layout.list_item_vitali, parent, false)
 
         val glukozaUKrviInList = rowView.findViewById<TextView>(R.id.glukozaUKrviTextView)
         val krvniTlakInList = rowView.findViewById<TextView>(R.id.krvniTlakTextView)

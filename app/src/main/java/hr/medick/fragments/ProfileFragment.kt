@@ -12,6 +12,8 @@ import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import com.google.gson.Gson
 import hr.medick.HostActivity
+import hr.medick.HostActivity.Companion.osoba
+import hr.medick.HostActivity.Companion.session
 import hr.medick.LoginActivity
 import hr.medick.NewReminderActivity
 import hr.medick.R
@@ -30,10 +32,7 @@ class ProfileFragment : Fragment() {
 
     private lateinit var binding: FragmentProfileBinding
     private lateinit var logoutBtn: Button
-    private lateinit var listOfPodsjetniks: List<Podsjetnik>
-    private lateinit var osoba: Osoba
-//    private lateinit var email: String
-    var podsjetnikList: List<Podsjetnik> = ArrayList()
+    private lateinit var profileOsoba: Osoba
     var emailChanged: Boolean = false
     private var isEditSuccessful: Boolean = true
 
@@ -49,9 +48,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initVariables() {
-        listOfPodsjetniks = HostActivity.listOfPodsjetniks
-        osoba = HostActivity.osoba
-//        email = binding.emailEditText.text.toString()
+        profileOsoba = osoba
     }
 
     private fun initComponents() {
@@ -72,7 +69,7 @@ class ProfileFragment : Fragment() {
         }
 
         logoutBtn.setOnClickListener{
-            HostActivity.session.logout()
+            session.logout()
 
             startActivity(Intent(activity, LoginActivity::class.java))
             activity?.finish()
@@ -142,7 +139,7 @@ class ProfileFragment : Fragment() {
                         println(stringCheck)
                         isEditSuccessful = false
                         println(response.message)
-                        binding.lozinkaEditText.setText("")
+                        session.setUser(profileDto.osoba)
                     } else {
                         println(stringCheck)
                         isEditSuccessful = true
