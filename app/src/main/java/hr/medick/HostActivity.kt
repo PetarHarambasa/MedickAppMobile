@@ -32,8 +32,8 @@ class HostActivity : AppCompatActivity() {
     companion object {
         lateinit var session: Session
         lateinit var osoba: Osoba
-        lateinit var listOfPodsjetniks: MutableList<Podsjetnik>
-        lateinit var listOfVitals: MutableList<Vitali>
+        lateinit var listOfPodsjetniks: List<Podsjetnik>
+        lateinit var listOfVitals: List<Vitali>
         lateinit var podsjetnikAdapter: PodsjetnikAdapter
         lateinit var vitalsAdapter: VitaliAdapter
     }
@@ -41,8 +41,8 @@ class HostActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         session = Session(this)
         osoba = session.getOsoba()
-        listOfPodsjetniks = mutableListOf()
-        listOfVitals = mutableListOf()
+        listOfPodsjetniks = ArrayList()
+        listOfVitals = ArrayList()
         podsjetnikAdapter = PodsjetnikAdapter(listOfPodsjetniks)
         vitalsAdapter = VitaliAdapter(listOfVitals)
 

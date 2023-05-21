@@ -8,4 +8,14 @@ data class Lijek(
     var id: Long? = null,
     var naziv: String? = null,
     var proizvodac: String? = null
-) : Parcelable
+
+) : Parcelable {
+
+    override fun toString(): String {
+        return "$naziv"
+    }
+}
+
+
+
+
