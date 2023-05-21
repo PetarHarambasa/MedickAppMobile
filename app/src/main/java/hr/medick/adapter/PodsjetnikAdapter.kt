@@ -39,15 +39,17 @@ class PodsjetnikAdapter(
         val brojSvakihSatiInList =
             rowView.findViewById<TextView>(R.id.brojSvakihSatiTextViewInListView)
 
-        val podsjetnik = getItem(position) as Podsjetnik
-        lijekNazivInList.text = podsjetnik.terapija?.lijek?.naziv + ","
-        lijekDozaInList.text = podsjetnik.terapija?.dozalijeka
-        brojTabletaInList.text =
-            "Preostalo " + podsjetnik.terapija?.kolicinatableta.toString() + " tableta, "
-        brojSvakihSatiInList.text = "svakih " + podsjetnik.terapija?.ponavljanja.toString() + "h"
-        brojPutaDnevnoInList.text =
-            podsjetnik.terapija?.kolicinadnevno.toString() + " puta dnevno, "
-
+        if (getItem(position) != null) {
+            val podsjetnik = getItem(position) as Podsjetnik
+            lijekNazivInList.text = podsjetnik.terapija?.lijek?.naziv + ","
+            lijekDozaInList.text = podsjetnik.terapija?.dozalijeka
+            brojTabletaInList.text =
+                "Preostalo " + podsjetnik.terapija?.kolicinatableta.toString() + " tableta, "
+            brojSvakihSatiInList.text =
+                "svakih " + podsjetnik.terapija?.ponavljanja.toString() + "h"
+            brojPutaDnevnoInList.text =
+                podsjetnik.terapija?.kolicinadnevno.toString() + " puta dnevno, "
+        }
         return rowView
 
     }

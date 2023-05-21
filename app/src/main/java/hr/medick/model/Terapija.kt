@@ -22,4 +22,10 @@ data class Terapija(
 
         fun getInstance() = instance
     }
+
+    override fun toString(): String {
+        return "Lijek= $lijek, dozalijeka= $dozalijeka, \nponavljanja= $ponavljanja, kolicinatableta= $kolicinatableta, \nkolicinadnevno= $kolicinadnevno"
+    }
+
+
 }
